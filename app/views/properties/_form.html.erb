@@ -1,4 +1,4 @@
-<%= simple_form_for property, defaults: { label_html: { class: 'label_class' } } do |form| %>
+<%= form_with model: @property do |form| %>
   <% if property.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h2>
@@ -11,9 +11,15 @@
     </div>
   <% end %>
 
-    <%= form.input :name %>
-    <%= form.input :order %>
-    <%= form.association :property_group %>
-    <%= form.submit %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <br>
+  <%= form.label :order %>
+  <%= form.number_field :order %>
+  <br>
+  <%= form.label :property_group %>
+  <%= form.collection_radio_buttons :property_group_id, PropertyGroup.all, :id, :name %>
+  <br>
+  <%= form.submit %>
 
 <% end %>

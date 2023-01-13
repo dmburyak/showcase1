@@ -1,0 +1,39 @@
+<%= simple_form_for item do |form| %>
+  <% if item.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+        <% item.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= form.input :name %>
+
+    <%= form.input :description %>
+
+    <%= form.input :price %>
+
+    <%= form.input :url %>
+
+    <%= form.association :seller %>
+
+    <% Property.all.each do |property| %>
+      <% label_name = property.name %>
+      <% label_id = property.id %>
+      <% checked_id = item.property_values.where(property_id: label_id).ids.first %>
+
+      <%= form.association :property_values, as: :check_boxes, 
+        collection: PropertyValue.where(property_id: label_id),
+        label: label_name, label_method: :property_data, checked: checked_id %>
+      <%= form.association :property_values, as: :text, 
+        collection: PropertyValue.where(property_id: label_id) %>%
+
+    <% end %>
+
+    <%= form.submit %>
+
+<% end %>

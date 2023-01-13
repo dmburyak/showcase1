@@ -1,0 +1,37 @@
+items
+--------------------------
+name             | string
+description      | text
+price            | float
+url              | text
+sellers_id       | integer
+
+sellers
+-------------------------
+name            | string
+
+property_groups
+-------------------------
+name            | string
+main            | boolean
+order           | integer
+
+properties
+-------------------------
+name            | string
+
+values
+-------------------------
+data            | string
+properties_id   | integer
+
+items_values
+-------------------------
+item_id         | integer
+value_id        | integer
+
+images
+-------------------------
+
+admins
+-------------------------

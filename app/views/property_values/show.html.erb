@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @property_value %>
+
+<div>
+  <%= link_to "Edit this value", edit_property_value_path(@property_value) %> |
+  <%= link_to "Back to values", property_values_path %>
+
+  <%= button_to "Destroy this value", @property_value, method: :delete %>
+</div>

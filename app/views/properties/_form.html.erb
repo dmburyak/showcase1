@@ -1,0 +1,19 @@
+<%= simple_form_for property, defaults: { label_html: { class: 'label_class' } } do |form| %>
+  <% if property.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h2>
+
+      <ul>
+        <% property.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= form.input :name %>
+    <%= form.input :order %>
+    <%= form.association :property_group %>
+    <%= form.submit %>
+
+<% end %>

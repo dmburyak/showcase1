@@ -1,11 +1,26 @@
+<%= form_with model: property_group do |f| %>
 
-<%= simple_form_for @property_group,  defaults: { label_html: { class: 'label_class' } } do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <% if property_group.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(item.errors.count, 'error') %> prohibited this item from being saved:</h2>
 
-    <%= f.input :name %>
-    <%= f.input :main, as: :radio_buttons, :checked => ['No', false] %>
-    <%= f.input :order %>
-    <%= f.button :submit %>
+      <ul>
+        <% property_group.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label :main %>
+  <%= f.check_box :main %>
+  <br>
+  <%= f.label :order %>
+  <%= f.number_field :order %>
+  <br>
+  <%= f.button :submit %>
 
 <% end %>

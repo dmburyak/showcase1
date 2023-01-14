@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_07_110127) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_14_104733) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -28,7 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_07_110127) do
     t.text "description"
     t.float "price"
     t.text "url"
-    t.integer "seller_id", null: false
+    t.integer "seller_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["seller_id"], name: "index_items_on_seller_id"
@@ -74,5 +74,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_07_110127) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "items", "sellers"
 end

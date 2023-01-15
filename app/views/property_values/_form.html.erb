@@ -1,4 +1,4 @@
-<%= simple_form_for property_value do |form| %>
+<%= form_with model: property_value do |form| %>
   <% if property_value.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(property_value.errors.count, "error") %> prohibited this value from being saved:</h2>
@@ -11,11 +11,7 @@
     </div>
   <% end %>
 
-    <%= form.association :property, as: :radio_buttons, collection: Property.where(id: 27), checked: 2 %>
+  <br>
 
-    <%= form.input :property_data %>
-  
-    <%# form.input :property_data, collection: PropertyValue.all, label_method: :property_data, value_method: :property_data %>
-
-    <%= form.submit %>
+  <%= form.submit %>
 <% end %>

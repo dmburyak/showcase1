@@ -2,7 +2,7 @@
 
   <% if property_group.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(item.errors.count, 'error') %> prohibited this item from being saved:</h2>
+      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
 
       <ul>
         <% property_group.errors.each do |error| %>

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PropertyGroupsController < ApplicationController
   before_action :set_property_group, only: %i[show edit update destroy]
 

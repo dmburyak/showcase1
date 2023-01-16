@@ -15,6 +15,7 @@ gem "stimulus-rails"
 gem "turbo-rails"
 
 gem "devise"
+gem "haml"
 
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]

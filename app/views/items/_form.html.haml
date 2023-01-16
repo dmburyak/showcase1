@@ -1,0 +1,24 @@
+= form_with model: item do |form|
+  - if item.errors.any?
+    %div(style="color: red")
+      %h2
+        = pluralize(item.errors.count, "error")
+        prohibited this item from being saved:
+
+      %ul
+        - item.errors.each do |error|
+          %li= error.full_message
+
+  = form.label :name
+  = form.text_field :name
+  <br>
+  = form.label :description
+  = form.text_field :description
+  <br>
+  = form.label :price
+  = form.number_field :price
+  <br>
+  = form.label :url
+  = form.text_field :url
+  <br>
+  = form.submit

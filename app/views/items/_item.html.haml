@@ -1,0 +1,18 @@
+%div(id="#{dom_id item}")
+  %p
+    %strong Name:
+    = item.name
+
+  %p
+    %strong Description:
+    = item.description
+  %p
+    %strong Price:
+    = item.price
+  %p
+    %strong Url:
+    = item.url
+  %p
+    %strong
+      = item.property_values[0].property.name if item.property_values[0]
+      = item.property_values[0].property_data if item.property_values[0]

@@ -1,0 +1,8 @@
+%p{:style => "color: green"}= notice
+%h1 Properties
+= link_to "New property", new_property_path
+#properties
+  - @properties.each do |property|
+    = render property
+    %p
+      = link_to "Show this property", property

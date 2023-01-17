@@ -1,0 +1,11 @@
+= form_with model: property_value do |form|
+  - if property_value.errors.any?
+    %div{:style => "color: red"}
+      %h2
+        = pluralize(property_value.errors.count, "error")
+        prohibited this value from being saved:
+      %ul
+        - property_value.errors.each do |error|
+          %li= error.full_message
+  %br/
+  = form.submit

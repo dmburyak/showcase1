@@ -1,0 +1,7 @@
+%h1 Editing value
+= render "form", property_value: @property_value
+%br/
+%div
+  = link_to "Show this value", @property_value
+  |
+  \#{link_to "Back to values", property_values_path}

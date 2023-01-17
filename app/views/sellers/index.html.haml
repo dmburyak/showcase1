@@ -1,0 +1,8 @@
+%p{:style => "color: green"}= notice
+%h1 Sellers
+#sellers
+  - @sellers.each do |seller|
+    = render seller
+    %p
+      = link_to "Show this seller", seller
+= link_to "New seller", new_seller_path

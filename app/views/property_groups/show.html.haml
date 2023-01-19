@@ -1,9 +1,9 @@
-%p{:style => "color: green"}= notice
+%p{style: "color: green"}= notice
 = render "property_group", property_group: @property_group
 %div
   = link_to "Edit this property group", edit_property_group_path(@property_group)
   |
-  \#{link_to "Back to property groups", property_groups_path}
-  %br/
-  %br/
+  =link_to "Back to property groups", property_groups_path
+  %br
+  %br
   = button_to "Destroy this property group", @property_group, method: :delete

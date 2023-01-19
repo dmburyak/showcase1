@@ -1,6 +1,6 @@
 = form_with model: property_group do |f|
   - if property_group.errors.any?
-    %div{:style => "color: red"}
+    %div{style: "color: red"}
       %h2
         = pluralize(item.errors.count, "error")
         prohibited this item from being saved:
@@ -9,11 +9,11 @@
           %li= error.full_message
   = f.label :name
   = f.text_field :name
-  %br/
+  %br
   = f.label :main
   = f.check_box :main
-  %br/
+  %br
   = f.label :order
   = f.number_field :order
-  %br/
+  %br
   = f.button :submit

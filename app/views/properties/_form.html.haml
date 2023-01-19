@@ -1,6 +1,6 @@
 = form_with model: property do |form|
   - if property.errors.any?
-    %div{:style => "color: red"}
+    %div{style: "color: red"}
       %h2
         = pluralize(property.errors.count, "error")
         prohibited this property from being saved:
@@ -9,11 +9,11 @@
           %li= error.full_message
   = form.label :name
   = form.text_field :name
-  %br/
+  %br
   = form.label :order
   = form.number_field :order
-  %br/
+  %br
   = form.label :property_group
   = form.collection_radio_buttons :property_group_id, PropertyGroup.all, :id, :name
-  %br/
+  %br
   = form.submit

@@ -1,6 +1,6 @@
 = form_with(model: seller) do |form|
   - if seller.errors.any?
-    %div{:style => "color: red"}
+    %div{style: "color: red"}
       %h2
         = pluralize(seller.errors.count, "error")
         prohibited this seller from being saved:

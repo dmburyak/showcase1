@@ -18,5 +18,6 @@ module Showcase1
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.paths['app/views'] << 'app/views/devise'
   end
 end

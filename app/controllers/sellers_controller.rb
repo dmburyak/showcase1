@@ -1,25 +1,21 @@
 class SellersController < ApplicationController
   before_action :set_seller, only: %i[ show edit update destroy ]
+  before_action :authenticate_admin!
 
-  # GET /sellers or /sellers.json
   def index
     @sellers = Seller.all
   end
 
-  # GET /sellers/1 or /sellers/1.json
   def show
   end
 
-  # GET /sellers/new
   def new
     @seller = Seller.new
   end
 
-  # GET /sellers/1/edit
   def edit
   end
 
-  # POST /sellers or /sellers.json
   def create
     @seller = Seller.new(seller_params)
 
@@ -32,7 +28,6 @@ class SellersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /sellers/1 or /sellers/1.json
   def update
     respond_to do |format|
       if @seller.update(seller_params)
@@ -43,7 +38,6 @@ class SellersController < ApplicationController
     end
   end
 
-  # DELETE /sellers/1 or /sellers/1.json
   def destroy
     @seller.destroy
 
@@ -54,12 +48,10 @@ class SellersController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_seller
     @seller = Seller.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def seller_params
     params.require(:seller).permit(:name)
   end

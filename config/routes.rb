@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :property_groups
 
-  root 'items#index'
+  root to: 'items#index'
 
   devise_for :admins
 

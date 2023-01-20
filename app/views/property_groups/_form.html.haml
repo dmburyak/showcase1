@@ -1,8 +1,8 @@
 = form_with model: property_group do |f|
   - if property_group.errors.any?
-    %div{style: "color: red"}
+    %div{style: 'color: red'}
       %h2
-        = pluralize(property_group.errors.count, "error")
+        = pluralize(property_group.errors.count, 'error')
         prohibited this item from being saved:
       %ul
         - property_group.errors.each do |error|

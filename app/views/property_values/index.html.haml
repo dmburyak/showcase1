@@ -1,8 +1,8 @@
-%p{style: "color: green"}= notice
+%p{style: 'color: green'}= notice
 %h1 Property_value
 #property_value
   - @property_values.each do |property_value|
     = render property_value
     %p
-      = link_to "Show this value", property_value
-= link_to "New value", new_property_value_path
+      = link_to 'Show this value', property_value
+= link_to 'New value', new_property_value_path

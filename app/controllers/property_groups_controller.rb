@@ -1,7 +1,6 @@
-# frozen_string_literal: true
-
 class PropertyGroupsController < ApplicationController
   before_action :set_property_group, only: %i[show edit update destroy]
+  before_action :authenticate_admin!
 
   def index
     @property_groups = PropertyGroup.all

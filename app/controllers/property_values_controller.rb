@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 class PropertyValuesController < ApplicationController
   before_action :set_property_value, only: %i[show edit update destroy]
+  before_action :authenticate_admin!
 
   def index
     @property_values = PropertyValue.all
@@ -7,7 +10,6 @@ class PropertyValuesController < ApplicationController
 
   def show; end
 
-  # GET /values/new
   def new
     @property_value = PropertyValue.new
   end
@@ -18,7 +20,7 @@ class PropertyValuesController < ApplicationController
     @property_value = PropertyValue.new(property_value_params)
 
     if @property_value.save
-      redirect_to property_value_url(@property_value), notice: "Property_value was successfully created."
+      redirect_to property_value_url(@property_value), notice: 'Property_value was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -26,7 +28,7 @@ class PropertyValuesController < ApplicationController
 
   def update
     if @property_value.update(property_value_params)
-      redirect_to property_value_url(@property_value), notice: "Value was successfully updated."
+      redirect_to property_value_url(@property_value), notice: 'Value was successfully updated.'
     else
       format.html { render :edit, status: :unprocessable_entity }
     end
@@ -35,7 +37,7 @@ class PropertyValuesController < ApplicationController
   def destroy
     @property_value.destroy
 
-    redirect_to property_value_url, notice: "Value was successfully destroyed."
+    redirect_to property_value_url, notice: 'Value was successfully destroyed.'
   end
 
   private

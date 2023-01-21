@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
   private
 
   def set_item
-    @item = Item.includes(:seller, property_values: :property).find(params[:id])
+    @item = Item.find(params[:id])
   end
 
   def item_params

@@ -4,8 +4,14 @@ class PropertiesController < ApplicationController
   before_action :set_property, only: %i[show edit update destroy]
   before_action :authenticate_admin!
 
+  # def index
+  #   @properties = Property.includes(:property_group)
+  #                         .where(property_groups: { name: 'Key Features' })
+  #                         .order(:order)
+  # end
+
   def index
-    @properties = Property.includes(:property_group).all.order(id: :desc)
+    @properties = Property.key_features
   end
 
   def show; end

@@ -6,3 +6,6 @@
   = link_to 'Back to sellers', sellers_path
 
   = button_to 'Destroy this seller', @seller, method: :delete
+
+  = link_to 'Destroy', seller_path(@seller),
+    data: {turbo_method: :delete, turbo_confirm: 'DELETE? Are you sure?'}

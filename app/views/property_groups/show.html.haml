@@ -6,4 +6,5 @@
   =link_to 'Back to property groups', property_groups_path
   %br
   %br
-  = button_to 'Destroy this property group', @property_group, method: :delete
+  = link_to 'Destroy', property_group_path(@property_group),
+    data: {turbo_method: :delete, turbo_confirm: 'DELETE? Are you sure?'}

@@ -6,4 +6,5 @@
   = link_to 'Back to values', property_values_path
   %br
   %br
-  = button_to 'Destroy this value', @property_value, method: :delete
+  = link_to 'Destroy', property_value_path(@property_value),
+    data: {turbo_method: :delete, turbo_confirm: 'DELETE? Are you sure?'}

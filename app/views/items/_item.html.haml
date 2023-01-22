@@ -15,9 +15,15 @@
   %p
     %strong Url:
     = item.url
-  %p
-    %h3 Key features
-    - key_features_values(item).each do | p_value |
-      %p
-        %strong #{p_value.property.name}:
-        = p_value.property_data
+
+  %h3 Key features
+  - key_features_values(item).each do | p_value |
+    %p
+      %strong #{p_value.property.name}:
+      = p_value.property_data
+
+  %h3 Details
+  - non_key_features_values(item).each do | p_value |
+    %p
+      %strong #{p_value.property.name}:
+      = p_value.property_data

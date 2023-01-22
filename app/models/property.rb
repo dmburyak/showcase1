@@ -7,7 +7,13 @@ class Property < ApplicationRecord
 
   scope :key_features, lambda {
     includes(:property_group)
-      .where(property_groups: { name: 'Key Features' })
+      .where(property_groups: { main: 1 })
+      .order(:order)
+  }
+
+  scope :non_key_features, lambda {
+    includes(:property_group)
+      .where(property_groups: { main: 0 })
       .order(:order)
   }
 

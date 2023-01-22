@@ -8,4 +8,14 @@
         - property_value.errors.each do |error|
           %li= error.full_message
   %br
+  Property:
+  %h3= property_name(27)
+  - PropertyValue.where(property_id: 27).each do |value|
+    = value.property_data
+
+  = form.text_field :property_id, value: 27
+  %br
+  = form.label :property_data
+  = form.text_field :property_data
+
   = form.submit

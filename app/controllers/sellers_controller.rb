@@ -23,7 +23,7 @@ class SellersController < ApplicationController
       if request.referer.include? 'sellers/new'
         redirect_to seller_url(@seller), notice: 'Seller was successfully created.'
       else
-        redirect_to request.referer
+        redirect_to request.referer, notice: 'Seller was successfully created.'
       end
     else
       render :new, status: :unprocessable_entity

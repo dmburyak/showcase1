@@ -1,0 +1,10 @@
+#seller_form.modal
+  .modal-dialog
+    .modal-content
+
+      .modal-header
+        %h4.modal-title New Seller
+        %button.btn-close{'data-bs-dismiss': 'modal', type: 'button'}
+
+      .modal-body
+        = render 'sellers/form', seller: Seller.new

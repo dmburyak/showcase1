@@ -18,13 +18,12 @@ class SellersController < ApplicationController
 
   def create
     @seller = Seller.new(seller_params)
-
-    respond_to do |format|
-      if @seller.save
-        format.html { redirect_to seller_url(@seller), notice: 'Seller was successfully created.' }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
+    # debugger
+    if @seller.save
+      # redirect_to seller_url(@seller), notice: 'Seller was successfully created.'
+      redirect_to request.referer, notice: 'Seller was successfully created.'
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 

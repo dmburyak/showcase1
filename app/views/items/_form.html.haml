@@ -20,5 +20,30 @@
   %br
   = form.label :url
   = form.text_field :url, size: 60
+  %hr
+  = form.label :seller
+  = form.collection_select :seller_id, Seller.all, :id, :name
+  <!-- Button to Open the Modal -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+  Open modal
+  </button>
+  %br
   %br
   = form.submit
+
+-# = render 'sellers/form', seller: @seller
+
+/ The Modal
+#myModal.modal
+  .modal-dialog
+    .modal-content
+      / Modal Header
+      .modal-header
+        %h4.modal-title Modal Heading
+        %button.btn-close{"data-bs-dismiss" => "modal", :type => "button"}
+      / Modal body
+      .modal-body
+        = render 'sellers/form', seller: Seller.new
+      / Modal footer
+      .modal-footer
+        %button.btn.btn-danger{"data-bs-dismiss" => "modal", :type => "button"} Close

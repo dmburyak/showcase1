@@ -8,6 +8,10 @@
   %p
     %strong Price:
     = item.price
+
+  %p
+    %strong Seller:
+    = item.seller.name if item.seller
   %p
     %strong Url:
     = item.url

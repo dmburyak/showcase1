@@ -53,17 +53,17 @@ parameters = { "_method" => "patch",
       "action" => "update",
       "id" => "1" }
 
-def reformat parameters
-  item = parameters.delete('item')
-  property = item.delete('property')
-  values = []
-  property.each_value do |elem|
-    values << elem["property_value_ids"] unless elem["property_value_ids"].empty?
-  end
-  item['property_value_ids'] = values
-  parameters['item'] = item
-  parameters
-end
+# def reformat(parameters)
+#   item = parameters.delete('item')
+#   property = item.delete('property')
+#   values = []
+#   property.each_value do |elem|
+#     values << elem["property_value_ids"] unless elem["property_value_ids"].empty?
+#   end
+#   item['property_value_ids'] = values
+#   parameters['item'] = item
+#   parameters
+# end
 
 
-puts (reformat(parameters))
+# puts reformat(parameters)

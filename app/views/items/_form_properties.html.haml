@@ -1,0 +1,11 @@
+- Property.key_features.each do | property |
+  %hr
+  = form.fields_for property, index: property.id do |property_form|
+    = property_form.label property.name
+    = property_form.collection_radio_buttons :property_value_ids, PropertyValue.where(property_id: property.id), :id, :property_data
+
+  - Property.non_key_features.each do | property |
+    %hr
+    = form.fields_for property, index: property.id do |property_form|
+      = property_form.label property.name
+      = property_form.collection_radio_buttons :property_value_ids, PropertyValue.where(property_id: property.id), :id, :property_data

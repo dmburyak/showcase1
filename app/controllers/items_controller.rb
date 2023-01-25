@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class ItemsController < ApplicationController
-  before_action :set_item, only: %i[show edit update destroy]
   before_action :authenticate_admin!, only: %i[new edit update destroy]
-
+  before_action :set_item, only: %i[show edit update destroy]
+  before_action :reformat, only: :update
   def index
     @items = Item.includes(:property_values).limit(10)
   end
@@ -45,9 +45,17 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    # request.parameters[:item][:property]="125"
-    # debugger
-    # params.require(:item).permit(:name, :description, :price, :url, :seller_id, :property)
     params.require(:item).permit(:name, :description, :price, :url, :seller_id, property_value_ids: [])
+  end
+
+  def reformat
+    item = request.parameters.delete('item')
+    property = item.delete('property')
+    values = []
+    property.each_value do |elem|
+      values << elem["property_value_ids"] unless elem["property_value_ids"].empty?
+    end
+    item['property_value_ids'] = values
+    request.parameters['item'] = item
   end
 end

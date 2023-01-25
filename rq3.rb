@@ -1,4 +1,4 @@
-a = { "_method" => "patch",
+parameters = { "_method" => "patch",
       "authenticity_token" => "7NcQNi2wxsnqrSwC9QU3Icu1ocN1xR6pKH7YH7aqXEdNZV65ktdvO1VRerEfInK8xl2WCH0duWHuX5OCtx1JFg",
       "item" =>
         { "name" => "Samsung Galaxy S22, 128 GB",
@@ -53,19 +53,17 @@ a = { "_method" => "patch",
       "action" => "update",
       "id" => "1" }
 
-b = a.delete('item')
-
-c = b.delete('property')
-
-a['item'] = b
-
-m = []
-c.each_value do |val|
-  m << val["property_value_ids"] unless val["property_value_ids"].empty?
+def reformat parameters
+  item = parameters.delete('item')
+  property = item.delete('property')
+  values = []
+  property.each_value do |elem|
+    values << elem["property_value_ids"] unless elem["property_value_ids"].empty?
+  end
+  item['property_value_ids'] = values
+  parameters['item'] = item
+  parameters
 end
 
-b["property_value_ids"] = m
 
-a['item'] = b
-
-p a
+puts (reformat(parameters))

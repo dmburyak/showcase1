@@ -45,7 +45,9 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :description, :price, :url, :seller_id, :property[])
-    # params.require(:item).permit(:name, :description, :price, :url, :seller_id)
+    # request.parameters[:item][:property]="125"
+    # debugger
+    # params.require(:item).permit(:name, :description, :price, :url, :seller_id, :property)
+    params.require(:item).permit(:name, :description, :price, :url, :seller_id, property_value_ids: [])
   end
 end

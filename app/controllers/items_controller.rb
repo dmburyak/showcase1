@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_admin!, only: %i[new edit update destroy]
   before_action :set_item, only: %i[show edit update destroy]
   before_action :reformat, only: :update
+
   def index
     @items = Item.includes(:property_values).limit(10)
   end

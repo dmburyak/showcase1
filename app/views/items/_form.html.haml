@@ -26,7 +26,7 @@
 
   = render 'items/modals/button_open_modal', form: 'seller_form', title: 'New Seller'
 
-  = render 'form_properties', form: form if show_properties == true
+  = render 'form_properties', form: form, item: item if show_properties == true
 
   %br
   %br

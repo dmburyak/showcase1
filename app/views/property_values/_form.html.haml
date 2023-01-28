@@ -9,11 +9,11 @@
           %li= error.full_message
   %br
   Property:
-  %h3= property_name(27)
-  - PropertyValue.where(property_id: 27).each do |value|
+  %h3= property_name(id)
+  - PropertyValue.where(property_id: id).each do |value|
     = value.property_data
 
-  = form.hidden_field :property_id, value: 27
+  = form.hidden_field :property_id, value: id
   %br
   = form.label :property_data
   = form.text_field :property_data

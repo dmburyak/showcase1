@@ -1,5 +1,6 @@
-%h1 New property_value
-= render 'form', property_value: @property_value
-%br
-%div
-  = link_to 'Back to values', property_values_path
+= turbo_frame_tag "property" do
+  %h1 New property_value
+  = render 'form', property_value: @property_value, id: 1
+  %br
+  %div
+    = link_to 'Back to values', property_values_path

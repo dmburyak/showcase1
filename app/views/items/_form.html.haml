@@ -21,11 +21,14 @@
   = form.label :url
   = form.text_field :url, size: 60
   %hr
-  = form.label :seller
-  = form.collection_select :seller_id, Seller.all, :id, :name
 
-  = render 'items/modals/button_open_modal', form_id: 'seller_form', title: 'New Seller', prop_id: 0
+  = turbo_frame_tag 'seller' do
+    = form.label :seller
+    = form.collection_select :seller_id, Seller.all, :id, :name
+    = link_to 'New seller', new_seller_path
 
+  -# = render 'items/modals/button_open_modal', form_id: 'seller_form', title: 'New Seller', prop_id: 0
+  -#
   = render 'form_properties', form: form, item: item if show_properties == true
 
   = form.label :publish

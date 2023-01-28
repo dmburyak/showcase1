@@ -50,13 +50,15 @@ class ItemsController < ApplicationController
   end
 
   def reformat
-    item = request.parameters.delete('item')
-    property = item.delete('property')
-    values = []
-    property.each_value do |elem|
-      values << elem["property_value_ids"] unless elem["property_value_ids"].empty?
+    if request.parameters['item']['property']
+      item = request.parameters.delete('item')
+      property = item.delete('property')
+      values = []
+      property.each_value do |elem|
+        values << elem["property_value_ids"] unless elem["property_value_ids"].empty?
+      end
+      item['property_value_ids'] = values
+      request.parameters['item'] = item
     end
-    item['property_value_ids'] = values
-    request.parameters['item'] = item
   end
 end

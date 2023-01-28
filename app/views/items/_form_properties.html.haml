@@ -1,16 +1,19 @@
 %hr
 - Property.key_features.each do | property |
-  = form.fields_for property, index: property.id do |property_form|
-    = property_form.label property.name
-    = property_form.collection_radio_buttons :property_value_ids, PropertyValue.where(property_id: property.id),
-    :id, :property_data, checked: item.property_values.find_by(property_id: property.id)&.id
-    = render 'items/modals/button_open_modal', form_id: 'property_values_form', title: 'New Value', prop_id: property.id
-    = render 'items/modals/property_value_form'
+  -# = turbo_frame_tag "property-#{property.id}" do
+  = turbo_frame_tag "property" do
+    = form.fields_for property, index: property.id do |property_form|
+      = property_form.label property.name
+      = property_form.collection_radio_buttons :property_value_ids, PropertyValue.where(property_id: property.id),
+      :id, :property_data, checked: item.property_values.find_by(property_id: property.id)&.id
+      = link_to 'New value', new_property_value_path(id: property.id)
+      -# = render 'items/modals/button_open_modal', form_id: 'property_values_form', title: 'New Value', prop_id: property.id
+      -# = render 'items/modals/property_value_form'
   %hr
 
-- Property.non_key_features.each do | property |
-  = form.fields_for property, index: property.id do |property_form|
-    = property_form.label property.name
-    = property_form.collection_radio_buttons :property_value_ids, PropertyValue.where(property_id: property.id),
-    :id, :property_data, checked: item.property_values.find_by(property_id: property.id)&.id
-  %hr
+-# - Property.non_key_features.each do | property |
+-#   = form.fields_for property, index: property.id do |property_form|
+-#     = property_form.label property.name
+-#     = property_form.collection_radio_buttons :property_value_ids, PropertyValue.where(property_id: property.id),
+-#     :id, :property_data, checked: item.property_values.find_by(property_id: property.id)&.id
+-#   %hr

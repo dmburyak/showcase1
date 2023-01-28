@@ -1,6 +1,8 @@
+%h1 New seller
 = turbo_frame_tag 'seller' do
-  %h1 New seller
   = render 'form', seller: @seller
   %br
   %div
-    = link_to 'Back to sellers', sellers_path
+    = link_to "Close", :back
+%div
+  = link_to 'Back to sellers', sellers_path

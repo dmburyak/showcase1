@@ -11,6 +11,7 @@ class PropertyValuesController < ApplicationController
   def show; end
 
   def new
+    @prop_id = params[:id]
     @property_value = PropertyValue.new
   end
 
@@ -20,7 +21,8 @@ class PropertyValuesController < ApplicationController
     @property_value = PropertyValue.new(property_value_params)
 
     if @property_value.save
-      redirect_to property_value_url(@property_value), notice: 'Property_value was successfully created.'
+      # redirect_to property_value_url(@property_value), notice: 'Property_value was successfully created.'
+      redirect_back(fallback_location:"/")
     else
       render :new, status: :unprocessable_entity
     end

@@ -13,7 +13,7 @@ module ItemsHelper
     item.property_values.where(property_id: Property.non_key_features.ids)
   end
 
-  def property_property_values(id)
+  def prop_values(id)
     PropertyValue.where(property_id: id)
   end
 

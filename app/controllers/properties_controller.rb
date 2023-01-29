@@ -11,7 +11,8 @@ class PropertiesController < ApplicationController
   # end
 
   def index
-    @properties = Property.key_features
+    @properties_key = Property.key_features
+    @properties_non_key = Property.non_key_features
   end
 
   def show; end

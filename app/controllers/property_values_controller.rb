@@ -39,13 +39,14 @@ class PropertyValuesController < ApplicationController
   def destroy
     @property_value.destroy
 
-    redirect_to property_value_url, notice: 'Value was successfully destroyed.'
+    redirect_to property_values_url, notice: 'Value was successfully destroyed.'
   end
 
   private
 
   def set_property_value
     @property_value = PropertyValue.find(params[:id])
+    @prop_id = @property_value.property.id
   end
 
   def property_value_params

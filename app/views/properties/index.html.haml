@@ -2,7 +2,12 @@
 %h1 Properties
 = link_to 'New property', new_property_path
 #properties
-  - @properties.each do |property|
+  - @properties_key.each do |property|
+    = render property
+    %p
+      = link_to 'Show this property', property
+  %hr
+  - @properties_non_key.each do |property|
     = render property
     %p
       = link_to 'Show this property', property

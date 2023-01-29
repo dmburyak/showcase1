@@ -1,10 +1,11 @@
-%p{style: 'color: green'}= notice
-= render @property_value
-%div
-  = link_to 'Edit this value', edit_property_value_path(@property_value)
-  |
-  = link_to 'Back to values', property_values_path
-  %br
-  %br
-  = link_to 'Destroy', property_value_path(@property_value),
-    data: {turbo_method: :delete, turbo_confirm: 'DELETE? Are you sure?'}
+= turbo_frame_tag "property-#{@property_value.property_id}" do
+  %p{style: 'color: green'}= notice
+  = render @property_value
+  %div
+    = link_to 'Edit this value', edit_property_value_path(@property_value)
+    |
+    = link_to "Close", :back
+    %br
+    %br
+    = link_to 'Destroy', property_value_path(@property_value),
+      data: {turbo_method: :delete, turbo_confirm: 'DELETE? Are you sure?'}

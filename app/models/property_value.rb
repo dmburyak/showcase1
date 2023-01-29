@@ -4,8 +4,4 @@ class PropertyValue < ApplicationRecord
 
   validates :property_data, presence: true
 
-  def set_value_with_link
-    @aaa
-  end
-
 end

@@ -4,19 +4,20 @@
   = turbo_frame_tag "property-#{property.id}" do
     = form.fields_for property, index: property.id do |property_form|
       = property_form.label property.name
-      = property_form.collection_radio_buttons :property_value_ids, PropertyValue.where(property_id: property.id),
-      :id, :property_data, { checked: item.property_values.find_by(property_id: property.id)&.id} do |b| |
-        b.label("data-value": b.value) { b.radio_button + b.text + link_to('New value', new_property_value_path(id: property.id)) } end                                |
+      = property_form.collection_radio_buttons :property_value_ids, property_property_values(property.id),
+        :id, :property_data, { checked: checked_value(item, property.id)} do |b|
+        = b.label { value_with_link b }
 
       = link_to 'New value', new_property_value_path(id: property.id)
   %hr
-%a{href: "/items/1"} blue
+
 - Property.non_key_features.each do | property |
 
   = turbo_frame_tag "property-#{property.id}" do
     = form.fields_for property, index: property.id do |property_form|
       = property_form.label property.name
-      = property_form.collection_radio_buttons :property_value_ids, PropertyValue.where(property_id: property.id),
-      :id, :property_data, checked: item.property_values.find_by(property_id: property.id)&.id
+      = property_form.collection_radio_buttons :property_value_ids, property_property_values(property.id),
+        :id, :property_data, { checked: checked_value(item, property.id)} do |b|
+        = b.label { value_with_link b }
       = link_to 'New value', new_property_value_path(id: property.id)
   %hr

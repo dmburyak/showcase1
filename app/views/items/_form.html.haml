@@ -1,4 +1,4 @@
-= form_with model: item, data: { controller: 'radios' } do |form|
+= form_with model: item, data: { controller: 'radios', action: 'keydown.ctrl->radios#uncheck' } do |form|
   - if item.errors.any?
     %div(style='color: red')
       %h2

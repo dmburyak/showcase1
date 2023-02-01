@@ -16,4 +16,7 @@
   = form.label :property_group
   = form.collection_radio_buttons :property_group_id, PropertyGroup.all, :id, :name
   %br
+  = form.label :key_feature
+  = form.check_box :key_feature
+  %br
   = form.submit

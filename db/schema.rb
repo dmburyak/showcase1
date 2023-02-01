@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_26_145639) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_30_095721) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -50,12 +50,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_26_145639) do
     t.datetime "updated_at", null: false
     t.integer "order"
     t.integer "property_group_id"
+    t.boolean "key_feature"
     t.index ["property_group_id"], name: "index_properties_on_property_group_id"
   end
 
   create_table "property_groups", force: :cascade do |t|
     t.string "name"
-    t.boolean "main"
     t.integer "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

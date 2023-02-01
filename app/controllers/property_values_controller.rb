@@ -22,7 +22,7 @@ class PropertyValuesController < ApplicationController
 
     if @property_value.save
       # redirect_to property_value_url(@property_value), notice: 'Property_value was successfully created.'
-      redirect_back(fallback_location:"/")
+      redirect_back(fallback_location: '/')
     else
       render :new, status: :unprocessable_entity
     end
@@ -39,7 +39,7 @@ class PropertyValuesController < ApplicationController
   def destroy
     @property_value.destroy
 
-    redirect_to property_values_url, notice: 'Value was successfully destroyed.'
+    redirect_back(fallback_location: '/')
   end
 
   private

@@ -6,14 +6,12 @@ class Property < ApplicationRecord
   validates :name, :order, presence: true
 
   scope :key_features, lambda {
-    includes(:property_group)
-      .where(property_groups: { main: 1 })
+    where(key_feature: true)
       .order(:order)
   }
 
   scope :non_key_features, lambda {
-    includes(:property_group)
-      .where(property_groups: { main: 0 })
+    where(key_feature: false)
       .order(:order)
   }
 

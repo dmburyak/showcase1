@@ -1,0 +1,17 @@
+%hr
+- item.images.each do | image |
+  - image_id = image.id
+
+  = turbo_frame_tag "image-#{image_id }" do
+
+    = form.fields_for image, index: image_id  do |image_form|
+
+      = image_form.label :url
+      = image_form.text_area :url
+
+      = image_form.label :order
+      = image_form.number_field :order
+
+      = link_to 'New value', new_image_path
+  %hr
+%hr

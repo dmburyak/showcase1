@@ -15,17 +15,17 @@
   %hr
 %hr
 
-- Property.non_key_features.each do | property |
-  - prop_id = property.id
-
-  = turbo_frame_tag "property-#{prop_id }" do
-
-    = form.fields_for property, index: prop_id  do |property_form|
-
-      = property_form.label property.name
-      = property_form.collection_radio_buttons :property_value_ids, prop_values(prop_id),
-        :id, :property_data, { checked: checked_value(item, prop_id)} do |b|
-        = b.label { value_with_link b }
-
-      = link_to 'New value', new_property_value_path(id: prop_id)
-  %hr
+-# - Property.non_key_features.each do | property |
+-#   - prop_id = property.id
+-#
+-#   = turbo_frame_tag "property-#{prop_id }" do
+-#
+-#     = form.fields_for property, index: prop_id  do |property_form|
+-#
+-#       = property_form.label property.name
+-#       = property_form.collection_radio_buttons :property_value_ids, prop_values(prop_id),
+-#         :id, :property_data, { checked: checked_value(item, prop_id)} do |b|
+-#         = b.label { value_with_link b }
+-#
+-#       = link_to 'New value', new_property_value_path(id: prop_id)
+-#   %hr

@@ -1,6 +1,6 @@
 = form_with model: item, data: { controller: 'radios', action: 'keydown.ctrl->radios#uncheck' } do |form|
   - if item.errors.any?
-    %div(style='color: red')
+    %div{style: 'color: red'}
       %h2
         = pluralize(item.errors.count, 'error')
         prohibited this item from being saved:
@@ -27,8 +27,8 @@
     = form.collection_select :seller_id, Seller.all, :id, :name
     = link_to 'New seller', new_seller_path
 
-  -# = render 'items/modals/button_open_modal', form_id: 'seller_form', title: 'New Seller', prop_id: 0
-  -#
+  = render 'form_images', form: form, item: item
+
   = render 'form_properties', form: form, item: item if show_properties == true
 
   = form.label :publish

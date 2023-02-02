@@ -9,17 +9,21 @@ class ImagesController < ApplicationController
 
   def new
     @image = Image.new
+    @item_id = params[:item_id]
   end
 
-  def edit; end
+  def edit
+    @item = Item.find(params[:item_id])
+    @item = Item.find(1)
+  end
 
   def create
     @image = Image.new(image_params)
 
     if @image.save
-      format.html { redirect_to image_url(@image), notice: 'Image was successfully created.' }
+      redirect_to image_url(@image), notice: 'Image was successfully created.'
     else
-      format.html { render :new, status: :unprocessable_entity }
+      render :new, status: :unprocessable_entity
     end
   end
 

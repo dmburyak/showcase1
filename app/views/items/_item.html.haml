@@ -16,6 +16,9 @@
     %strong Url:
     = item.url
 
+  %p
+    = render 'images/item_images', item: item
+
   %h3 Key features
   - key_features_values(item).each do | p_value |
     %p

@@ -59,7 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_01_135333) do
     t.datetime "updated_at", null: false
     t.integer "order"
     t.integer "property_group_id"
-    t.boolean "key_feature"
+    t.boolean "key_feature", default: false
     t.index ["property_group_id"], name: "index_properties_on_property_group_id"
   end
 

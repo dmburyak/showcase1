@@ -1,0 +1,28 @@
+= form_with(model: image) do |form|
+  - if image.errors.any?
+    %div{:style => "color: red"}
+      %h2
+        = pluralize(image.errors.count, "error")
+        prohibited this image from being saved:
+      %ul
+        - image.errors.each do |error|
+          %li= error.full_message
+  %hr
+  - item.images.each do | image |
+    - image_id = image.id
+
+    = turbo_frame_tag "image-#{image_id }" do
+
+      = form.fields_for image, index: image_id  do |image_form|
+
+        = image_form.label :url
+        = image_form.text_area :url
+
+        = image_form.label :order
+        = image_form.number_field :order
+
+        = link_to 'New value', new_image_path
+    %hr
+  %hr
+  %div
+    = form.submit

@@ -1,8 +1,8 @@
 = form_with(model: image) do |form|
   - if image.errors.any?
-    %div{:style => "color: red"}
+    %div{ style: 'color: red' }
       %h2
-        = pluralize(image.errors.count, "error")
+        = pluralize(image.errors.count, 'error')
         prohibited this image from being saved:
       %ul
         - image.errors.each do |error|
@@ -21,7 +21,7 @@
         = image_form.label :order
         = image_form.number_field :order
 
-        = link_to 'New value', new_image_path
+        = link_to 'New image', new_image_path
     %hr
   %hr
   %div

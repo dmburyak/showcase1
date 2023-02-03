@@ -5,7 +5,7 @@
 #items
   - @items.each do |item|
 
-    = render 'item', item: item
+    = render 'item', item: item, edit_img: false
 
     %p= link_to 'Show this item', item
 

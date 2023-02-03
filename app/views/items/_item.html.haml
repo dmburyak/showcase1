@@ -16,8 +16,9 @@
     %strong Url:
     = item.url
 
-  %p
-    = render 'images/item_images', item: item
+  = turbo_frame_tag "item-images-#{item.id}" do
+    %p
+      = render 'images/item_images', item: item, edit_img: edit_img
 
   %h3 Key features
   - key_features_values(item).each do | p_value |

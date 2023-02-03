@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 class ImagesController < ApplicationController
-  before_action :set_image, only: %i[ show edit update destroy ]
+  before_action :set_image, only: %i[show edit update destroy]
 
   def index
     @images = Image.all
@@ -9,19 +10,16 @@ class ImagesController < ApplicationController
 
   def new
     @image = Image.new
-    @item_id = params[:item_id]
+    @item_id = params[:id]
   end
 
-  def edit
-    @item = Item.find(params[:item_id])
-    @item = Item.find(1)
-  end
+  def edit; end
 
   def create
     @image = Image.new(image_params)
 
     if @image.save
-      redirect_to image_url(@image), notice: 'Image was successfully created.'
+      redirect_back(fallback_location: '/')
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,16 +27,16 @@ class ImagesController < ApplicationController
 
   def update
     if @image.update(image_params)
-      format.html { redirect_to image_url(@image), notice: 'Image was successfully updated.' }
+      redirect_to image_url(@image), notice: 'Image was successfully updated.'
     else
-      format.html { render :edit, status: :unprocessable_entity }
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @image.destroy
 
-    format.html { redirect_to images_url, notice: 'Image was successfully destroyed.' }
+    redirect_back(fallback_location: '/')
   end
 
   private

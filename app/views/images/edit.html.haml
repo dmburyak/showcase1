@@ -1,0 +1,13 @@
+%h1 Editing image
+
+= turbo_frame_tag "item-images-#{@image.item_id}" do
+
+  = render 'form', image: @image, item_id: @image.item_id
+
+  %br
+
+  %p
+    = link_to 'Show this image', @image
+    |
+    = link_to 'Close', :back
+

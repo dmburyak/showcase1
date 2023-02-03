@@ -1,5 +1,10 @@
 .item-images
   -item.images&.each do |image|
-    %img{src: image.url, height: 120}
-%br
-= link_to 'New image', new_image_path(item_id: item.id)
+
+    - if edit_img
+      = link_to image_tag(image.url, height: 120), image
+    - else
+      = image_tag image.url, height: 120
+  %br
+
+  = link_to 'New image', new_image_path(id: item.id) if edit_img

@@ -27,7 +27,7 @@
     = form.collection_select :seller_id, Seller.all, :id, :name
     = link_to 'New seller', new_seller_path
 
-  = render 'form_properties', form: form, item: item if show_properties == true
+  = render 'properties/form_properties', form: form, item: item if show_properties == true
 
   = form.label :publish
   = form.check_box :publish

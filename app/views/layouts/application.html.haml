@@ -12,6 +12,28 @@
     = javascript_importmap_tags
 
   %body
-    %p.alert= alert
+    .container
+      %p= alert
 
-    = yield
+      %nav.navbar.navbar-expand-lg.bg-light
+        .container-fluid
+          %a.navbar-brand{:href => "/"} Samsung Phones
+          %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarSupportedContent", "data-bs-toggle" => "collapse", :type => "button"}
+            %span.navbar-toggler-icon
+          #navbarSupportedContent.collapse.navbar-collapse
+            %ul.navbar-nav.me-auto.mb-2.mb-lg-0
+              %li.nav-item
+                %a.nav-link.active{"aria-current" => "page", :href => "/"} Home
+            %form.d-flex{:role => "search"}
+              %input.form-control.me-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
+              %button.btn.btn-outline-success{:type => "submit"} Search
+
+      .row
+        .col-lg-2
+          filter
+        .col-lg-10
+          .active-filters
+            active filters
+
+          = yield
+

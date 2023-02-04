@@ -1,12 +1,10 @@
-%p= notice
-
 %h1 phones
-
-#phones
+.row.row-cols-1.row-cols-md-1.row-cols-lg-2.row-cols-xl-3
   - @phones.each do |phone|
-
-    = render 'phone', phone: phone, edit_img: false
-
-    %p= link_to 'Show this phone', phone
-
-= link_to 'New phone', new_phone_path
+    .col
+      .card.shadow-sm
+        .card-body
+          %p.card-text
+            = render 'phone', phone: phone, edit_img: false
+            = link_to 'Show this phone', phone
+          = link_to 'New phone', new_phone_path

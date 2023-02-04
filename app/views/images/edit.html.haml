@@ -1,8 +1,8 @@
 %h1 Editing image
 
-= turbo_frame_tag "item-images-#{@image.item_id}" do
+= turbo_frame_tag "phone-images-#{@image.phone_id}" do
 
-  = render 'form', image: @image, item_id: @image.item_id
+  = render 'form', image: @image, phone_id: @image.phone_id
 
   %br
 

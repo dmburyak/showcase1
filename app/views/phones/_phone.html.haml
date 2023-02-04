@@ -1,0 +1,33 @@
+%div{id: "#{ dom_id phone }"}
+  %p
+    %strong Name:
+    = phone.name
+  %p
+    %strong Description:
+    = phone.description
+  %p
+    %strong Price:
+    = phone.price
+
+  %p
+    %strong Seller:
+    = phone.seller.name if phone.seller
+  %p
+    %strong Url:
+    = phone.url
+
+  = turbo_frame_tag "phone-images-#{phone.id}" do
+    %p
+      = render 'images/phone_images', phone: phone, edit_img: edit_img
+
+  %h3 Key features
+  - key_features_values(phone).each do | p_value |
+    %p
+      %strong #{p_value.property.name}:
+      = p_value.property_data
+
+  %h3 Details
+  - non_key_features_values(phone).each do | p_value |
+    %p
+      %strong #{p_value.property.name}:
+      = p_value.property_data

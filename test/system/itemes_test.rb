@@ -1,55 +1,55 @@
 require "application_system_test_case"
 
-class ItemesTest < ApplicationSystemTestCase
+class phoneesTest < ApplicationSystemTestCase
   setup do
-    @iteme = itemes(:one)
+    @phonee = phonees(:one)
   end
 
   test "visiting the index" do
-    visit itemes_url
-    assert_selector "h1", text: "Itemes"
+    visit phonees_url
+    assert_selector "h1", text: "phonees"
   end
 
-  test "should create iteme" do
-    visit itemes_url
-    click_on "New iteme"
+  test "should create phonee" do
+    visit phonees_url
+    click_on "New phonee"
 
-    fill_in "Category", with: @iteme.category_id
-    fill_in "Description", with: @iteme.description
-    fill_in "Name", with: @iteme.name
-    fill_in "Price", with: @iteme.price
-    fill_in "Property", with: @iteme.property_id
-    fill_in "Seller", with: @iteme.seller_id
-    fill_in "Subcatogory", with: @iteme.subcatogory_id
-    fill_in "Url", with: @iteme.url
-    click_on "Create Iteme"
+    fill_in "Category", with: @phonee.category_id
+    fill_in "Description", with: @phonee.description
+    fill_in "Name", with: @phonee.name
+    fill_in "Price", with: @phonee.price
+    fill_in "Property", with: @phonee.property_id
+    fill_in "Seller", with: @phonee.seller_id
+    fill_in "Subcatogory", with: @phonee.subcatogory_id
+    fill_in "Url", with: @phonee.url
+    click_on "Create phonee"
 
-    assert_text "Iteme was successfully created"
+    assert_text "phonee was successfully created"
     click_on "Back"
   end
 
-  test "should update Iteme" do
-    visit iteme_url(@iteme)
-    click_on "Edit this iteme", match: :first
+  test "should update phonee" do
+    visit phonee_url(@phonee)
+    click_on "Edit this phonee", match: :first
 
-    fill_in "Category", with: @iteme.category_id
-    fill_in "Description", with: @iteme.description
-    fill_in "Name", with: @iteme.name
-    fill_in "Price", with: @iteme.price
-    fill_in "Property", with: @iteme.property_id
-    fill_in "Seller", with: @iteme.seller_id
-    fill_in "Subcatogory", with: @iteme.subcatogory_id
-    fill_in "Url", with: @iteme.url
-    click_on "Update Iteme"
+    fill_in "Category", with: @phonee.category_id
+    fill_in "Description", with: @phonee.description
+    fill_in "Name", with: @phonee.name
+    fill_in "Price", with: @phonee.price
+    fill_in "Property", with: @phonee.property_id
+    fill_in "Seller", with: @phonee.seller_id
+    fill_in "Subcatogory", with: @phonee.subcatogory_id
+    fill_in "Url", with: @phonee.url
+    click_on "Update phonee"
 
-    assert_text "Iteme was successfully updated"
+    assert_text "phonee was successfully updated"
     click_on "Back"
   end
 
-  test "should destroy Iteme" do
-    visit iteme_url(@iteme)
-    click_on "Destroy this iteme", match: :first
+  test "should destroy phonee" do
+    visit phonee_url(@phonee)
+    click_on "Destroy this phonee", match: :first
 
-    assert_text "Iteme was successfully destroyed"
+    assert_text "phonee was successfully destroyed"
   end
 end

@@ -1,5 +1,5 @@
-.item-images
-  -item.images&.order(:order).each do |image|
+.phone-images
+  -phone.images&.order(:order).each do |image|
 
     - if edit_img
       = link_to image_tag(image.url, height: 120), image
@@ -7,4 +7,4 @@
       = image_tag image.url, height: 120
   %br
 
-  = link_to 'New image', new_image_path(id: item.id) if edit_img
+  = link_to 'New image', new_image_path(id: phone.id) if edit_img

@@ -11,7 +11,7 @@ class ImagesController < ApplicationController
 
   def new
     @image = Image.new
-    @item_id = params[:id]
+    @phone_id = params[:id]
   end
 
   def edit; end
@@ -48,7 +48,7 @@ class ImagesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def image_params
-    params.require(:image).permit(:url, :order, :item_id)
+    params.require(:image).permit(:url, :order, :phone_id)
   end
 
 end

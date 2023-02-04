@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_04_134438) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_04_140710) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -26,13 +26,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_134438) do
   create_table "images", force: :cascade do |t|
     t.text "url"
     t.integer "order"
-    t.integer "item_id", null: false
+    t.integer "phone_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_images_on_item_id"
+    t.index ["phone_id"], name: "index_images_on_phone_id"
   end
 
-  create_table "items", force: :cascade do |t|
+  create_table "phones", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.float "price"
@@ -42,17 +42,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_134438) do
     t.datetime "updated_at", null: false
     t.boolean "publish"
     t.string "slug"
-    t.index ["seller_id"], name: "index_items_on_seller_id"
-    t.index ["slug"], name: "index_items_on_slug", unique: true
+    t.index ["seller_id"], name: "index_phones_on_seller_id"
+    t.index ["slug"], name: "index_phones_on_slug", unique: true
   end
 
-  create_table "items_property_values", id: false, force: :cascade do |t|
-    t.integer "item_id"
+  create_table "phones_property_values", id: false, force: :cascade do |t|
+    t.integer "phone_id"
     t.integer "property_value_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_items_property_values_on_item_id"
-    t.index ["property_value_id"], name: "index_items_property_values_on_property_value_id"
+    t.index ["phone_id"], name: "index_phones_property_values_on_phone_id"
+    t.index ["property_value_id"], name: "index_phones_property_values_on_property_value_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -86,5 +86,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_134438) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "images", "items"
+  add_foreign_key "images", "phones", column: "phone_id"
 end

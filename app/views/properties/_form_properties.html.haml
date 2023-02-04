@@ -8,7 +8,7 @@
 
       = property_form.label property.name
       = property_form.collection_radio_buttons :property_value_ids, prop_values(prop_id),
-        :id, :property_data, { checked: checked_value(item, prop_id)} do |b|
+        :id, :property_data, { checked: checked_value(phone, prop_id)} do |b|
         = b.label { value_with_link b }
 
       = link_to 'New value', new_property_value_path(id: prop_id)
@@ -24,7 +24,7 @@
 
       = property_form.label property.name
       = property_form.collection_radio_buttons :property_value_ids, prop_values(prop_id),
-        :id, :property_data, { checked: checked_value(item, prop_id)} do |b|
+        :id, :property_data, { checked: checked_value(phone, prop_id)} do |b|
         = b.label { value_with_link b }
 
       = link_to 'New value', new_property_value_path(id: prop_id)

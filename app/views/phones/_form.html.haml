@@ -1,12 +1,12 @@
-= form_with model: item, data: { controller: 'radios', action: 'keydown.ctrl->radios#uncheck' } do |form|
-  - if item.errors.any?
+= form_with model: phone, data: { controller: 'radios', action: 'keydown.ctrl->radios#uncheck' } do |form|
+  - if phone.errors.any?
     %div{style: 'color: red'}
       %h2
-        = pluralize(item.errors.count, 'error')
-        prohibited this item from being saved:
+        = pluralize(phone.errors.count, 'error')
+        prohibited this phone from being saved:
 
       %ul
-        - item.errors.each do |error|
+        - phone.errors.each do |error|
           %li= error.full_message
 
   = form.label :name
@@ -30,12 +30,10 @@
     = form.collection_select :seller_id, Seller.all, :id, :name
     = link_to 'New seller', new_seller_path
 
-  = render 'properties/form_properties', form: form, item: item if show_properties == true
+  = render 'properties/form_properties', form: form, phone: phone if show_properties == true
 
   = form.label :publish
   = form.check_box :publish
   %br
   %br
   = form.submit
-
-= render 'items/modals/seller_form'

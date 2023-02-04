@@ -1,0 +1,12 @@
+%p= notice
+
+%h1 phones
+
+#phones
+  - @phones.each do |phone|
+
+    = render 'phone', phone: phone, edit_img: false
+
+    %p= link_to 'Show this phone', phone
+
+= link_to 'New phone', new_phone_path

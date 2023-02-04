@@ -1,4 +1,4 @@
-items
+phones
 --------------------------
 name             | string
 description      | text
@@ -25,9 +25,9 @@ values
 data            | string
 properties_id   | integer
 
-items_values
+phones_values
 -------------------------
-item_id         | integer
+phone_id         | integer
 value_id        | integer
 
 images

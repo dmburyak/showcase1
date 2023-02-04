@@ -3,7 +3,7 @@
     %div{style: 'color: red'}
       %h2
         = pluralize(property_group.errors.count, 'error')
-        prohibited this item from being saved:
+        prohibited this phone from being saved:
       %ul
         - property_group.errors.each do |error|
           %li= error.full_message

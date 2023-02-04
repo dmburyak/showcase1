@@ -1,0 +1,9 @@
+%h1 Editing phone
+
+= render 'form', phone: @phone, show_properties: true
+
+<br>
+%div
+  = link_to 'Show this phone', @phone
+  |
+  = link_to 'Back to phones', phones_path

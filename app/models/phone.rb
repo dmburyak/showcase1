@@ -1,4 +1,4 @@
-class Item < ApplicationRecord
+class Phone < ApplicationRecord
   belongs_to :seller, optional: true
   has_and_belongs_to_many :property_values
   has_many :images

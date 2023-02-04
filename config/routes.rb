@@ -2,10 +2,10 @@ Rails.application.routes.draw do
 
   devise_for :admins
 
-  root "items#index"
+  root "phones#index"
 
   resources :images
-  resources :items
+  resources :phones
   resources :property_groups
   resources :properties
   resources :property_values

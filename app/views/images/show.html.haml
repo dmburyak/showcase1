@@ -1,4 +1,4 @@
-= turbo_frame_tag "item-images-#{@image.item_id}" do
+= turbo_frame_tag "phone-images-#{@image.phone_id}" do
 
   %p{style: 'color: green'}
     = notice
@@ -10,5 +10,5 @@
     |
     = link_to 'Close', :back
     |
-    = link_to 'Destroy', item_path(@image),
+    = link_to 'Destroy', phone_path(@image),
     data: { turbo_method: :delete, turbo_confirm: 'DELETE? Are you sure?' }

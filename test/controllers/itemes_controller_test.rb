@@ -1,23 +1,23 @@
 require "test_helper"
 
-class ItemesControllerTest < ActionDispatch::IntegrationTest
+class phoneesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @iteme = itemes(:one)
+    @phonee = phonees(:one)
   end
 
   test "should get index" do
-    get itemes_url
+    get phonees_url
     assert_response :success
   end
 
   test "should get new" do
-    get new_iteme_url
+    get new_phonee_url
     assert_response :success
   end
 
-  test "should create iteme" do
-    assert_difference("Iteme.count") do
-      post itemes_url, params: { iteme: { category_id: @iteme.category_id, description: @iteme.description, name: @iteme.name, price: @iteme.price, property_id: @iteme.property_id, seller_id: @iteme.seller_id, subcatogory_id: @iteme.subcatogory_id, url: @iteme.url } }
+  test "should create phonee" do
+    assert_difference("phonee.count") do
+      post phonees_url, params: { phonee: { category_id: @phonee.category_id, description: @phonee.description, name: @phonee.name, price: @phonee.price, property_id: @iteme.property_id, seller_id: @iteme.seller_id, subcatogory_id: @iteme.subcatogory_id, url: @iteme.url } }
     end
 
     assert_redirected_to iteme_url(Iteme.last)

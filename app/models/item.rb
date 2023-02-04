@@ -4,4 +4,8 @@ class Item < ApplicationRecord
   has_many :images
 
   validates :name, presence: true
+
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
 end

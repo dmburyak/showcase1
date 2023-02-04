@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_01_135333) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_04_134438) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -41,7 +41,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_01_135333) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "publish"
+    t.string "slug"
     t.index ["seller_id"], name: "index_items_on_seller_id"
+    t.index ["slug"], name: "index_items_on_slug", unique: true
   end
 
   create_table "items_property_values", id: false, force: :cascade do |t|
@@ -59,7 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_01_135333) do
     t.datetime "updated_at", null: false
     t.integer "order"
     t.integer "property_group_id"
-    t.boolean "key_feature", default: false
+    t.boolean "key_feature"
     t.index ["property_group_id"], name: "index_properties_on_property_group_id"
   end
 

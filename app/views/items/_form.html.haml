@@ -19,7 +19,10 @@
   = form.number_field :price, step: 0.01
   %br
   = form.label :url
-  = form.text_field :url, size: 60
+  = form.text_field :url, size: 120
+  %br
+  = form.label :slug
+  = form.text_field :slug, size: 120
   %hr
 
   = turbo_frame_tag 'seller' do

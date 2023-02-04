@@ -9,11 +9,10 @@
           %li= error.full_message
   %hr
 
-  = form.label :item_id
-  = form.text_field :item_id, value: item_id
-  %br
+  = form.hidden_field :item_id, value: item_id
+
   = form.label :url
-  = form.text_area :url
+  = form.text_area :url, size: '70x3'
   %br
   = form.label :order
   = form.number_field :order

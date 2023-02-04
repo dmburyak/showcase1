@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 class ImagesController < ApplicationController
+  before_action :authenticate_admin!, only: %i[show new edit update destroy]
   before_action :set_image, only: %i[show edit update destroy]
 
   def index

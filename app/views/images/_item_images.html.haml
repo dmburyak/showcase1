@@ -1,5 +1,5 @@
 .item-images
-  -item.images&.each do |image|
+  -item.images&.order(:order).each do |image|
 
     - if edit_img
       = link_to image_tag(image.url, height: 120), image

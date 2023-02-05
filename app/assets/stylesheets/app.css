@@ -1,0 +1,19 @@
+.col, .card {
+    height: 100%;
+}
+
+.phone-card {
+    margin: 10px 0;
+}
+
+.phone-image {
+    display: block;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.card-text a {
+    text-decoration: none;
+    color: black;
+
+}

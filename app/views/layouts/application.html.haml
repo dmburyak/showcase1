@@ -24,6 +24,7 @@
             %ul.navbar-nav.me-auto.mb-2.mb-lg-0
               %li.nav-item
                 %a.nav-link.active{"aria-current" => "page", :href => "/"} Home
+            = link_to 'New phone', new_phone_path if admin_signed_in?
             %form.d-flex{:role => "search"}
               %input.form-control.me-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
               %button.btn.btn-outline-primary{:type => "submit"} Search

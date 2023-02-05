@@ -15,7 +15,7 @@
     .container
       %p= alert
 
-      %nav.navbar.navbar-expand-lg.bg-light
+      %nav.navbar.navbar-expand-lg{style: "background-color: #e3f2fd"}
         .container-fluid
           %a.navbar-brand{:href => "/"} Samsung Phones
           %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarSupportedContent", "data-bs-toggle" => "collapse", :type => "button"}
@@ -26,7 +26,7 @@
                 %a.nav-link.active{"aria-current" => "page", :href => "/"} Home
             %form.d-flex{:role => "search"}
               %input.form-control.me-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
-              %button.btn.btn-outline-success{:type => "submit"} Search
+              %button.btn.btn-outline-primary{:type => "submit"} Search
 
       .row
         .col-lg-2

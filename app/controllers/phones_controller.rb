@@ -6,7 +6,7 @@ class PhonesController < ApplicationController
   before_action :reformat, only: :update
 
   def index
-    @phones = Phone.includes(:property_values).limit(10)
+    @pagy, @phones = pagy(Phone.includes(:property_values))
   end
 
   def show; end

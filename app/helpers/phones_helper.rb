@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 module PhonesHelper
 
+  include Pagy::Frontend
+
   def phone_property_values(phone)
     phone.property_values
   end

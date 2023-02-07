@@ -1,8 +1,4 @@
-%h5.text-primary= phone.name
-
-%div.phone-image
-  - first_phone = phone.images&.order(:order).first
-  = image_tag first_phone.url, height: 300 if first_phone
+%h5.text-primary.mb-3= phone.name
 
 %p
   %strong Price: #{number_to_currency(phone.price)}
@@ -11,3 +7,5 @@
   %p
     %strong #{p_value.property.name}:
     = p_value.property_data
+
+%p= phone.description

@@ -6,22 +6,29 @@
       .card-body
 
         .row
-          .col-md-7
+          .col-lg-7
 
-            = render 'images/phone_images', phone: @phone
+            = render 'images/image_carousel', phone: @phone
 
-          .col-md-5
-            .card.shadow-sm
-              .card-body
-                .card-text
+          .col-lg-5
+            .right-block
+              = render 'phone_right_block', phone: @phone
 
-                  = render 'phone_full', phone: @phone, edit_img: true
 
-                  %div
-                    = link_to 'Edit this phone', edit_phone_path(@phone)
-                    |
-                    = link_to 'Back to phones', phones_path
-                    |
-                    = link_to 'Destroy', phone_path(@phone),
-                      data: {turbo_method: :delete, turbo_confirm: 'DELETE? Are you sure?'}
+        %hr
+        .row
+          %h5.text-primary.mb-3 Details
+          .col-lg-6
+            = render 'phone_details', phone: @phone, part: 1
+
+          .col-lg-6
+            = render 'phone_details', phone: @phone, part: 2
+
+        %div
+          = link_to 'Edit this phone', edit_phone_path(@phone)
+          |
+          = link_to 'Back to phones', phones_path
+          |
+          = link_to 'Destroy', phone_path(@phone),
+            data: {turbo_method: :delete, turbo_confirm: 'DELETE? Are you sure?'}
 

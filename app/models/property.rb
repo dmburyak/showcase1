@@ -15,4 +15,14 @@ class Property < ApplicationRecord
       .order(:order)
   }
 
+  scope :non_key_features_part1, lambda {
+    where(key_feature: false, order: [1...230])
+      .order(:order)
+  }
+
+  scope :non_key_features_part2, lambda {
+    where(key_feature: false, order: [230..])
+      .order(:order)
+  }
+
 end

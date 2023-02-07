@@ -15,6 +15,22 @@ module PhonesHelper
     phone.property_values.where(property_id: Property.non_key_features.ids)
   end
 
+  def non_key_features_values_part1(phone)
+    phone.property_values.where(property_id: Property.non_key_features_part1.ids)
+  end
+
+  def non_key_features_values_part2(phone)
+    phone.property_values.where(property_id: Property.non_key_features_part2.ids)
+  end
+
+  def select_features_part(phone, part)
+    if part == 1
+      non_key_features_values_part1(phone)
+    else
+      non_key_features_values_part2(phone)
+    end
+  end
+
   def prop_values(id)
     PropertyValue.where(property_id: id)
   end

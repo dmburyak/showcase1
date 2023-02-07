@@ -17,3 +17,8 @@
     color: black;
 
 }
+
+.pagination-wrapper {
+    display: flex;
+    justify-content: end;
+}

@@ -1,8 +1,18 @@
-.row.row-cols-1.row-cols-md-1.row-cols-lg-2.row-cols-xl-3
-  - @phones.each do |phone|
-    .phone-card
-      .col
-        .card.shadow-sm
-          .card-body
-            .card-text
-              = link_to (render 'phone', phone: phone), phone
+.row
+  .col-lg-2
+    filter
+  .col-lg-10
+    .active-filters
+      active filters
+
+    .row.row-cols-1.row-cols-md-1.row-cols-lg-2.row-cols-xl-3
+      - @phones.each do |phone|
+        .phone-card
+          .col
+            .card.shadow-sm
+              .card-body
+                .card-text
+                  = link_to (render 'phone', phone: phone), phone
+
+    .pagination-wrapper
+      != pagy_bootstrap_nav(@pagy)

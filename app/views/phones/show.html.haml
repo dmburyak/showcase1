@@ -1,12 +1,27 @@
 %p{style: 'color: green'}= notice
 
-= render 'phone_full', phone: @phone, edit_img: true
+.row
+  .col
+    .card.shadow-sm
+      .card-body
 
-%div
-  = link_to 'Edit this phone', edit_phone_path(@phone)
-  |
-  = link_to 'Back to phones', phones_path
-  |
-  = link_to 'Destroy', phone_path(@phone),
-    data: {turbo_method: :delete, turbo_confirm: 'DELETE? Are you sure?'}
+        .row
+          .col-md-7
+
+            = render 'images/phone_images', phone: @phone
+
+          .col-md-5
+            .card.shadow-sm
+              .card-body
+                .card-text
+
+                  = render 'phone_full', phone: @phone, edit_img: true
+
+                  %div
+                    = link_to 'Edit this phone', edit_phone_path(@phone)
+                    |
+                    = link_to 'Back to phones', phones_path
+                    |
+                    = link_to 'Destroy', phone_path(@phone),
+                      data: {turbo_method: :delete, turbo_confirm: 'DELETE? Are you sure?'}
 

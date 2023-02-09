@@ -22,3 +22,11 @@
     display: flex;
     justify-content: end;
 }
+
+.carousel-inner {
+    text-align: center;
+}
+
+.carousel-item {
+    height: 550px;
+}

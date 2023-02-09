@@ -4,33 +4,11 @@
     %button{"aria-label" => "Slide 2", "data-bs-slide-to" => "1", "data-bs-target" => "#myCarousel", :type => "button"}
     %button.active{"aria-current" => "true", "aria-label" => "Slide 3", "data-bs-slide-to" => "2", "data-bs-target" => "#myCarousel", :type => "button"}
   .carousel-inner
-    .carousel-item
-      %svg.bd-placeholder-img{"aria-hidden" => "true", :focusable => "false", :height => "100%", :preserveaspectratio => "xMidYMid slice", :width => "100%", :xmlns => "http://www.w3.org/2000/svg"}
-        %rect{:fill => "#777", :height => "100%", :width => "100%"}
-      .container
-        .carousel-caption.text-start
-          %h1 Example headline.
-          %p Some representative placeholder content for the first slide of the carousel.
-          %p
-            %a.btn.btn-lg.btn-primary{:href => "#"} Sign up today
-    .carousel-item
-      %svg.bd-placeholder-img{"aria-hidden" => "true", :focusable => "false", :height => "100%", :preserveaspectratio => "xMidYMid slice", :width => "100%", :xmlns => "http://www.w3.org/2000/svg"}
-        %rect{:fill => "#777", :height => "100%", :width => "100%"}
-      .container
-        .carousel-caption
-          %h1 Another example headline.
-          %p Some representative placeholder content for the second slide of the carousel.
-          %p
-            %a.btn.btn-lg.btn-primary{:href => "#"} Learn more
-    .carousel-item.active
-      %svg.bd-placeholder-img{"aria-hidden" => "true", :focusable => "false", :height => "100%", :preserveaspectratio => "xMidYMid slice", :width => "100%", :xmlns => "http://www.w3.org/2000/svg"}
-        %rect{:fill => "#777", :height => "100%", :width => "100%"}
-      .container
-        .carousel-caption.text-end
-          %h1 One more for good measure.
-          %p Some representative placeholder content for the third slide of this carousel.
-          %p
-            %a.btn.btn-lg.btn-primary{:href => "#"} Browse gallery
+    != phone.images&.order(:order).each_with_index do | image, i |
+      %div{class: ['carousel-item', ('active' if i == 0)]}
+        = image_tag image.url, height: 300
+
+
   %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#myCarousel", :type => "button"}
     %span.carousel-control-prev-icon{"aria-hidden" => "true"}
     %span.visually-hidden Previous

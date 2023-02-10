@@ -23,6 +23,10 @@
     justify-content: end;
 }
 
+.carousel {
+    margin-bottom: 75px;
+}
+
 .carousel-inner {
     text-align: center;
 }
@@ -30,3 +34,18 @@
 .carousel-item {
     height: 550px;
 }
+
+.carousel button span {
+    filter: invert(70%);
+}
+.carousel-indicators {
+    margin-bottom: -25px;
+}
+
+.carousel-indicators [data-bs-target] {
+    height: 0;
+    width: 50px;
+    text-indent: 0;
+}
+
+

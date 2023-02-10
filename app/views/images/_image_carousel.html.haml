@@ -1,17 +1,17 @@
 #phones-carousel.carousel.slide{"data-bs-ride" => "carousel"}
 
   .carousel-indicators
-    - i = 0
-    - while i < phone.images.size do
-      %button{"data-bs-slide-to" => "#{i}", "data-bs-target" => "#phones-carousel",
-      :type => "button", class: ('active' if i == 0)}
+    - phone.images&.order(:order).each_with_index do | image, i |
+      %button{'data-bs-slide-to': "#{i}", 'data-bs-target': '#phones-carousel',
+      type: 'button', class: ('active' if i == 0)}
+        != image_tag image.url, height: '50px'
 
   .carousel-inner
     - phone.images&.order(:order).each_with_index do | image, i |
       %div{class: ['carousel-item', ('active' if i == 0)]}
         != image_tag image.url, height: '100%'
           
-  %button.carousel-control-prev{"data-bs-slide" => "prev", "data-bs-target" => "#phones-carousel", :type => "button"}
+  %button.carousel-control-prev{'data-bs-slide': 'prev', 'data-bs-target': '#phones-carousel', type: 'button'}
     %span.carousel-control-prev-icon
-  %button.carousel-control-next{"data-bs-slide" => "next", "data-bs-target" => "#phones-carousel", :type => "button"}
+  %button.carousel-control-next{'data-bs-slide': 'next', 'data-bs-target': '#phones-carousel', type: 'button'}
     %span.carousel-control-next-icon

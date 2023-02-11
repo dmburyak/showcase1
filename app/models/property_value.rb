@@ -4,4 +4,8 @@ class PropertyValue < ApplicationRecord
 
   validates :property_data, presence: true
 
+  def self.ransackable_attributes(auth_object = nil)
+    ['property_data']
+  end
+
 end

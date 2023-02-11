@@ -6,7 +6,8 @@ class PhonesController < ApplicationController
   before_action :reformat, only: :update
 
   def index
-    @pagy, @phones = pagy(Phone.includes(:property_values))
+    @q = Phone.ransack(params[:q])
+    @pagy, @phones = pagy(@q.result(distinct: true).includes(:property_values))
   end
 
   def show; end

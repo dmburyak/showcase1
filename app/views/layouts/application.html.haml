@@ -15,19 +15,20 @@
     .container
       %p= alert
 
-      %nav.navbar.navbar-expand-lg{style: "background-color: #e3f2fd"}
+      %nav.navbar.navbar-expand-lg{style: 'background-color: #e3f2fd'}
         .container-fluid
-          %a.navbar-brand{:href => "/"} Samsung Phones
-          %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarSupportedContent", "data-bs-toggle" => "collapse", :type => "button"}
+          %a.navbar-brand{:href => '/'} Samsung Phones
+          %button.navbar-toggler{'aria-controls': 'navbarSupportedContent', 'aria-expanded': 'false', 'aria-label': 'Toggle navigation',
+          'data-bs-target': '#navbarSupportedContent', 'data-bs-toggle': 'collapse', type: 'button'}
             %span.navbar-toggler-icon
           #navbarSupportedContent.collapse.navbar-collapse
             %ul.navbar-nav.me-auto.mb-2.mb-lg-0
               %li.nav-item
-                %a.nav-link.active{"aria-current" => "page", :href => "/"} Home
-            = link_to 'New phone', new_phone_path if admin_signed_in?
-            %form.d-flex{:role => "search"}
-              %input.form-control.me-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
-              %button.btn.btn-outline-primary{:type => "submit"} Search
+                %a.nav-link.active{'aria-current' => 'page', :href => '/'} Home
+              - if admin_signed_in?
+                %li.nav-item
+                  = link_to 'New phone', new_phone_path
+            = render 'phones/search_form' if current_page?(root_path) || current_page?(phones_path)
 
       = yield
 

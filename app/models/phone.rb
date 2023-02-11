@@ -8,4 +8,12 @@ class Phone < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[description name price]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[property_values seller]
+  end
+
 end

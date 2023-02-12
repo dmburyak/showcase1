@@ -43,4 +43,15 @@ module PhonesHelper
     b.radio_button + link_to(b.text, property_value_path(b.object.id))
   end
 
+  def get_filter
+    return unless params[:q]
+
+    query = params[:q]['name_or_description_or_property_values_property_data_cont']
+    '<i>Search result for:</i> '.html_safe + query unless query.empty?
+  end
+
+  def show_search_filter_forms?
+    current_page?(phones_path) || current_page?(search_phones_path) || @q
+  end
+
 end

@@ -1,9 +1,11 @@
 .row
   .col-lg-2
-    filter
+    = render 'form_filters'
+
   .col-lg-10
     .active-filters
       active filters
+      -# = get_filter
 
     .row.row-cols-1.row-cols-md-1.row-cols-lg-2.row-cols-xl-3
       - @phones.each do |phone|

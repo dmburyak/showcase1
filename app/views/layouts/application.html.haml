@@ -28,7 +28,7 @@
               - if admin_signed_in?
                 %li.nav-item
                   = link_to 'New phone', new_phone_path
-            = render 'phones/search_form' if current_page?(root_path) || current_page?(phones_path)
+            = render 'phones/form_search' if show_search_filter_forms?
 
       = yield
 

@@ -8,6 +8,12 @@ class PhonesController < ApplicationController
   def index
     @q = Phone.ransack(params[:q])
     @pagy, @phones = pagy(@q.result(distinct: true).includes(:property_values))
+    # debugger
+  end
+
+  def search
+    index
+    render :index, status: :accepted
   end
 
   def show; end

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class PhonesController < ApplicationController
+  include PhonesHelper
+
   before_action :authenticate_admin!, only: %i[new edit update destroy]
   before_action :set_phone, only: %i[show edit update destroy]
   before_action :reformat, only: :update
@@ -8,7 +10,21 @@ class PhonesController < ApplicationController
   def index
     @q = Phone.ransack(params[:q])
     @pagy, @phones = pagy(@q.result(distinct: true).includes(:property_values))
-    # debugger
+  end
+
+  def filter
+    @q = Phone.ransack(params[:q])
+    @selection = {}
+
+    @phones = if params[:filter].nil?
+                Phone.all
+              else
+                filtering(params[:filter])
+              end
+
+    @pagy, @phones = pagy(@phones)
+
+    render :index, status: :accepted
   end
 
   def search
@@ -46,37 +62,6 @@ class PhonesController < ApplicationController
     redirect_to phones_url, notice: 'Phone was successfully destroyed.'
   end
 
-  def filter
-    @q = Phone.ransack(params[:q])
-    @selection = {}
-    unless params[:filter].nil?
-      groups = params[:filter].keys
-      options = params[:filter].values
-
-      options.each_index do |i|
-        values = options[i].values.flatten
-        values.delete('')
-
-        next if values.empty?
-
-        ids = PropertyValue.select(:id).where(property_data: values)
-        @phones = if @phones.nil?
-                    Phone.joins(:phones_property_values).where('phones_property_values.property_value_id': ids)
-                  else
-                    @phones.where(id: [Phone.joins(:phones_property_values).select(:id)
-                                            .where('phones_property_values.property_value_id': ids)])
-                  end
-        @selection[groups[i]] = values
-      end
-    end
-
-    @phones = Phone.all if @selection.empty?
-
-    @pagy, @phones = pagy(@phones)
-
-    render :index, status: :accepted
-  end
-
   private
 
   def set_phone
@@ -87,16 +72,4 @@ class PhonesController < ApplicationController
     params.require(:phone).permit(:name, :description, :price, :url, :seller_id, property_value_ids: [])
   end
 
-  def reformat
-    if request.parameters['phone']['property']
-      phone = request.parameters.delete('phone')
-      property = phone.delete('property')
-      values = []
-      property.each_value do |elem|
-        values << elem['property_value_ids'] unless elem['property_value_ids'].empty?
-      end
-      phone['property_value_ids'] = values
-      request.parameters['phone'] = phone
-    end
-  end
 end

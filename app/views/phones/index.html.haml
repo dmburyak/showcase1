@@ -4,8 +4,13 @@
 
   .col-lg-10
     .active-filters
-      -# = @selection
-      -# = get_filter
+      - unless params[:q].nil?
+        %i Search query:
+        = get_search
+
+      - if params[:q].nil?
+        %i Filters
+        = render 'filters'
 
     .row.row-cols-1.row-cols-md-1.row-cols-lg-2.row-cols-xl-3
       - @phones.each do |phone|

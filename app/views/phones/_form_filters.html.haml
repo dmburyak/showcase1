@@ -1,11 +1,16 @@
-= search_form_for @q, url: search_phones_path,
-                      html: { method: :post } do |f|
+= form_for :filter, url: filter_phones_path,
+                      html: { method: :post } do |form|
 
-  = f.label property_name(41)
-  = f.collection_check_boxes :property_values_property_data_in, PropertyValue.where(property_id: 41),
-                              :property_data, :property_data
+  = form.fields_for '41' do |f|
 
-  = f.label :name_or_description_cont
-  = f.search_field :name_or_description_cont
+    = f.label property_name(41)
+    = f.collection_check_boxes :property_values_data_in, PropertyValue.where(property_id: 41),
+                                :property_data, :property_data
+  %br
+  = form.fields_for '27' do |f|
+    = f.label property_name(27)
+    = f.collection_check_boxes :property_values_data_in, PropertyValue.where(property_id: 27),
+                                :property_data, :property_data
 
-  = f.submit
+  %br
+  = form.submit

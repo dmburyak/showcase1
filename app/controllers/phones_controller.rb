@@ -46,6 +46,37 @@ class PhonesController < ApplicationController
     redirect_to phones_url, notice: 'Phone was successfully destroyed.'
   end
 
+  def filter
+    @q = Phone.ransack(params[:q])
+    @selection = {}
+    unless params[:filter].nil?
+      groups = params[:filter].keys
+      options = params[:filter].values
+
+      options.each_index do |i|
+        values = options[i].values.flatten
+        values.delete('')
+
+        next if values.empty?
+
+        ids = PropertyValue.select(:id).where(property_data: values)
+        @phones = if @phones.nil?
+                    Phone.joins(:phones_property_values).where('phones_property_values.property_value_id': ids)
+                  else
+                    @phones.where(id: [Phone.joins(:phones_property_values).select(:id)
+                                            .where('phones_property_values.property_value_id': ids)])
+                  end
+        @selection[groups[i]] = values
+      end
+    end
+
+    @phones = Phone.all if @selection.empty?
+
+    @pagy, @phones = pagy(@phones)
+
+    render :index, status: :accepted
+  end
+
   private
 
   def set_phone
@@ -62,7 +93,7 @@ class PhonesController < ApplicationController
       property = phone.delete('property')
       values = []
       property.each_value do |elem|
-        values << elem["property_value_ids"] unless elem["property_value_ids"].empty?
+        values << elem['property_value_ids'] unless elem['property_value_ids'].empty?
       end
       phone['property_value_ids'] = values
       request.parameters['phone'] = phone

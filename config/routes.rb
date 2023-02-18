@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :phones do
     match 'search' => 'phones#search',
           on: :collection, via: [:get, :post], as: :search
+    match 'filter' => 'phones#filter',
+          on: :collection, via: [:get, :post], as: :filter
   end
 
   resources :property_groups

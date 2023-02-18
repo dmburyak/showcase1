@@ -27,7 +27,7 @@
                 %a.nav-link.active{'aria-current' => 'page', :href => '/'} Home
               - if admin_signed_in?
                 %li.nav-item
-                  = link_to 'New phone', new_phone_path
+                  = link_to 'New phone', new_phone_path, class: 'nav-link'
             = render 'phones/form_search' if show_search_filter_forms?
 
       = yield

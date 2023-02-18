@@ -44,6 +44,7 @@ module PhonesHelper
   end
 
   def get_filter
+    return @selection unless @selection && @selection.empty?
     return unless params[:q]
 
     query = params[:q]['name_or_description_or_property_values_property_data_cont']
@@ -51,7 +52,7 @@ module PhonesHelper
   end
 
   def show_search_filter_forms?
-    current_page?(phones_path) || current_page?(search_phones_path) || @q
+    @q
   end
 
 end

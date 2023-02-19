@@ -55,8 +55,9 @@
     border-bottom: dashed 1px grey;
 }
 
-.filter-group input {
-    margin: 0 2px 0 6px;
+.filter-block {
+    display: inline-block;
+    margin-right: 7px;
 }
 
 .filter-label {

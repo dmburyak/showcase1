@@ -1,7 +1,8 @@
 - if @selection.nil? || @selection&.empty?
-  no filters
+  %em no filters
 - else
   - @selection.each do |key, val|
-    = Property.find(key).name + ':'
-    = val.join(", ")
-    = ' / '
+    %em.text-primary= Property.find(key).name + ':'
+    - val.each do |key|
+      - value = PropertyValue.find(key).property_data
+      = first_word(value) + ';'

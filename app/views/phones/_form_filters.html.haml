@@ -6,11 +6,11 @@
     = form.fields_for property.id.to_s do |f|
 
       .filter-group
-        .filter-label=property.name
+        .text-primary=property.name
         - PropertyValue.where(property_id: property.id).each do |value|
           = content_tag :div, class: 'filter-block' do
-            = f.check_box :value_id, { multiple: true }, value.property_data, nil
-            = f.label :value_id, value.property_data
+            = f.check_box :value_id, { multiple: true }, value.id, nil
+            = f.label :value_id, first_word(value.property_data)
 
   .d-flex.justify-content-end.mt-1
     = form.submit 'Apply', class: 'btn btn-primary btn-sm'

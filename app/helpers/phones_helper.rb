@@ -69,21 +69,24 @@ module PhonesHelper
     options = filters.values
 
     options.each_index do |i|
-      values = options[i].values.flatten
-      values.delete('')
+      value_ids = options[i].values.flatten
+      value_ids.delete('')
 
-      next if values.empty?
+      next if value_ids.empty?
 
-      ids = PropertyValue.select(:id).where(property_data: values)
       @phones = if @phones.nil?
-                  Phone.joins(:phones_property_values).where('phones_property_values.property_value_id': ids)
+                  Phone.joins(:phones_property_values).where('phones_property_values.property_value_id': value_ids)
                 else
                   @phones.where(id: [Phone.joins(:phones_property_values).select(:id)
-                                          .where('phones_property_values.property_value_id': ids)])
+                                          .where('phones_property_values.property_value_id': value_ids)])
                 end
-      @selection[groups[i]] = values
+      @selection[groups[i]] = value_ids
     end
     @selection.empty? ? Phone.all : @phones
+  end
+
+  def first_word(value)
+    value.split(' ').first
   end
 
 end

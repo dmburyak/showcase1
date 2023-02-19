@@ -1,7 +1,7 @@
-- if @selection&.empty? || @selection.nil?
+- if @selection.nil? || @selection&.empty?
   no filters
 - else
-  - @selection&.each do |key, val|
+  - @selection.each do |key, val|
     = Property.find(key).name + ':'
     = val.join(", ")
     = ' / '

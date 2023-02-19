@@ -13,6 +13,9 @@
   = form.label :order
   = form.number_field :order
   %br
+  = form.label :filter
+  = form.number_field :filter
+  %br
   = form.label :property_group
   = form.collection_radio_buttons :property_group_id, PropertyGroup.all, :id, :name
   %br

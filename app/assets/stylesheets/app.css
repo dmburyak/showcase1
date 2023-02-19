@@ -38,6 +38,7 @@
 .carousel button span {
     filter: invert(70%);
 }
+
 .carousel-indicators {
     margin-bottom: -25px;
 }
@@ -48,4 +49,17 @@
     text-indent: 0;
 }
 
+.filter-group {
+    padding: 5px;
+    font-size: smaller;
+    border-bottom: dashed 1px grey;
+}
+
+.filter-group input {
+    margin: 0 2px 0 6px;
+}
+
+.filter-label {
+    color: #0a53be;
+}
 

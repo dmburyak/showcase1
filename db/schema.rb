@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_04_140710) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_19_091650) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -29,7 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_140710) do
     t.integer "phone_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["phone_id"], name: "index_images_on_phone_id"
+    t.index ["phone_id"], name: "index_images_on_item_id"
   end
 
   create_table "phones", force: :cascade do |t|
@@ -62,6 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_140710) do
     t.integer "order"
     t.integer "property_group_id"
     t.boolean "key_feature"
+    t.integer "filter", default: 0
     t.index ["property_group_id"], name: "index_properties_on_property_group_id"
   end
 
@@ -86,5 +87,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_140710) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "images", "phones", column: "phone_id"
+  add_foreign_key "images", "phones", primary_key: "id"
 end

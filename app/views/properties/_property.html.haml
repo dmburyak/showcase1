@@ -1,7 +1,7 @@
 %div{id: "#{dom_id property}"}
-  %p
-    %strong Name:
-    = property.name
+  %h4
+    Name:
+    %strong= property.name
   %p
     %strong Property Group:
     = property.property_group.name
@@ -9,6 +9,14 @@
     %strong Order:
     = property.order
   %p
+    %strong Filter:
+    = property.filter
+  %p
     %strong Key Feature:
     = property.key_feature ? 'Yes' : 'No'
 
+  %p
+    %strong Values:
+    - property.property_values.each do |value|
+      = value.property_data
+      ;

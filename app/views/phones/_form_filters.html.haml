@@ -1,16 +1,13 @@
-= form_for :filter, url: filter_phones_path,
+= form_with scope: :filter, url: filter_phones_path,
                       html: { method: :post } do |form|
 
-  = form.fields_for '41' do |f|
+  - Property.where(filter: [1..]).order(:filter).each do |property|
 
-    = f.label property_name(41)
-    = f.collection_check_boxes :property_values_data_in, PropertyValue.where(property_id: 41),
-                                :property_data, :property_data
-  %br
-  = form.fields_for '27' do |f|
-    = f.label property_name(27)
-    = f.collection_check_boxes :property_values_data_in, PropertyValue.where(property_id: 27),
-                                :property_data, :property_data
+    = form.fields_for property.id.to_s do |f|
 
-  %br
-  = form.submit
+      .filter-group
+        .filter-label= f.label property.name
+        .filter-body= f.collection_check_boxes :property_values_data, PropertyValue.where(property_id: property.id),
+                                    :property_data, :property_data
+  .d-flex.justify-content-end.mt-1
+    = form.submit 'Apply', class: 'btn btn-primary btn-sm'

@@ -25,10 +25,11 @@
             = render 'phone_details', phone: @phone, part: 2
 
         %div
-          = link_to 'Edit this phone', edit_phone_path(@phone)
-          |
           = link_to 'Back to phones', :back
-          |
-          = link_to 'Destroy', phone_path(@phone),
-            data: {turbo_method: :delete, turbo_confirm: 'DELETE? Are you sure?'}
+          - if admin_signed_in?
+            |
+            = link_to 'Edit this phone', edit_phone_path(@phone) if admin_signed_in?
+            |
+            = link_to 'Destroy', phone_path(@phone),
+              data: {turbo_method: :delete, turbo_confirm: 'DELETE? Are you sure?'}
 

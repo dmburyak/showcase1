@@ -70,9 +70,9 @@ module PhonesHelper
 
     options.each_index do |i|
       value_ids = options[i].values.flatten
-      value_ids.delete('')
 
-      next if value_ids.empty?
+      # value_ids.delete('')
+      # next if value_ids.empty?
 
       @phones = if @phones.nil?
                   Phone.joins(:phones_property_values).where('phones_property_values.property_value_id': value_ids)
@@ -82,6 +82,7 @@ module PhonesHelper
                 end
       @selection[groups[i]] = value_ids
     end
+
     @selection.empty? ? Phone.all : @phones
   end
 
@@ -98,7 +99,7 @@ module PhonesHelper
   end
 
   def first_word(value)
-    value.split(" ").first
+    value.split(' ').first
   end
 
 end

@@ -9,3 +9,10 @@
     = p_value.property_data
 
 %p= phone.description
+
+%p
+  %strong Seller:
+  = phone.seller&.name
+
+%p
+  = link_to 'Go to the seller shop', phone.url, target: '_blank'

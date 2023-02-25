@@ -1,4 +1,4 @@
-= form_with scope: :filter, url: filter_phones_path,
+= form_with scope: :f, url: filter_phones_path,
                       html: { method: :get } do |form|
 
   - Property.where(filter: [1..]).order(:filter).each do |property|

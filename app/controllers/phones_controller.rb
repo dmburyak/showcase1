@@ -12,13 +12,12 @@ class PhonesController < ApplicationController
   end
 
   def filter
-    # @q = Phone.ransack(params[:q])
     @selection = {}
 
-    @phones = if params[:filter].nil?
+    @phones = if params[:f].nil?
                 Phone.all
               else
-                filtering(params[:filter])
+                filtering(params[:f])
               end
 
     @pagy, @phones = pagy(@phones)
@@ -34,6 +33,7 @@ class PhonesController < ApplicationController
               end
 
     @pagy, @phones = pagy(@phones)
+
     render :index, status: :accepted
   end
 

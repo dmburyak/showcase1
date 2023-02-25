@@ -8,12 +8,11 @@ class PhonesController < ApplicationController
   before_action :reformat, only: :update
 
   def index
-    @q = Phone.ransack(params[:q])
-    @pagy, @phones = pagy(@q.result(distinct: true).includes(:property_values))
+    @pagy, @phones = pagy(Phone.all)
   end
 
   def filter
-    @q = Phone.ransack(params[:q])
+    # @q = Phone.ransack(params[:q])
     @selection = {}
 
     @phones = if params[:filter].nil?
@@ -28,7 +27,13 @@ class PhonesController < ApplicationController
   end
 
   def search
-    index
+    @phones = if params[:query].nil?
+                Phone.all
+              else
+                searching(params[:query])
+              end
+
+    @pagy, @phones = pagy(@phones)
     render :index, status: :accepted
   end
 

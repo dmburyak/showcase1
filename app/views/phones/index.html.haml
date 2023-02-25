@@ -4,11 +4,11 @@
 
   .col-lg-10
     .active-filters
-      - unless params[:q].nil?
-        %i Search query:
-        = get_search
+      - unless params[:query].nil?
+        %i.text-primary Search query:
+        = get_search_query
 
-      - if params[:q].nil?
+      - if params[:query].nil?
         Filters:
         = render 'filters_applied'
 

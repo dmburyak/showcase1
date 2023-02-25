@@ -27,7 +27,7 @@
         %div
           = link_to 'Edit this phone', edit_phone_path(@phone)
           |
-          = link_to 'Back to phones', phones_path
+          = link_to 'Back to phones', :back
           |
           = link_to 'Destroy', phone_path(@phone),
             data: {turbo_method: :delete, turbo_confirm: 'DELETE? Are you sure?'}

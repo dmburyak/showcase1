@@ -1,5 +1,5 @@
 = form_with scope: :filter, url: filter_phones_path,
-                      html: { method: :post } do |form|
+                      html: { method: :get } do |form|
 
   - Property.where(filter: [1..]).order(:filter).each do |property|
 
@@ -9,8 +9,8 @@
         .text-primary=property.name
         - PropertyValue.where(property_id: property.id).each do |value|
           = content_tag :div, class: 'filter-block' do
-            = f.check_box :value_id, { multiple: true }, value.id, nil
-            = f.label :value_id, first_word(value.property_data)
+            = f.check_box :val_id, { multiple: true }, value.id, nil
+            = f.label :val_id, first_word(value.property_data)
 
   .d-flex.justify-content-end.mt-1
     = form.submit 'Apply', class: 'btn btn-primary btn-sm'

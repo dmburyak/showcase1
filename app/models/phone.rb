@@ -3,6 +3,8 @@ class Phone < ApplicationRecord
   has_and_belongs_to_many :property_values
   has_many :images
 
+  # ransack_alias :phone, :name_or_description_or_property_values_property_data
+
   validates :name, presence: true
 
   extend FriendlyId

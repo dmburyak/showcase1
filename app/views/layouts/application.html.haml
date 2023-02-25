@@ -28,7 +28,7 @@
               - if admin_signed_in?
                 %li.nav-item
                   = link_to 'New phone', new_phone_path, class: 'nav-link'
-            = render 'phones/form_search' if @q
+            = render 'phones/form_search' if @phones
 
       = yield
 

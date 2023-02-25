@@ -47,8 +47,8 @@ module PhonesHelper
     @selection
   end
 
-  def get_search
-    params[:q]['name_or_description_or_property_values_property_data_cont']
+  def get_search_query
+    params[:query]
   end
 
   def reformat
@@ -85,8 +85,20 @@ module PhonesHelper
     @selection.empty? ? Phone.all : @phones
   end
 
+  def searching(query)
+    @phones = Phone.joins(:property_values)
+                   .where('name LIKE ?', "%#{Phone.sanitize_sql_like(query)}%")
+                   .or(Phone.joins(:property_values)
+                            .where('description LIKE ?', "%#{Phone.sanitize_sql_like(query)}%"))
+                   .or(Phone.joins(:property_values)
+                            .where('"property_values"."property_data" LIKE ?', "%#{Phone.sanitize_sql_like(query)}%"))
+                   .distinct
+
+    query.empty? ? Phone.all : @phones
+  end
+
   def first_word(value)
-    value.split(' ').first
+    value.split(" ").first
   end
 
 end

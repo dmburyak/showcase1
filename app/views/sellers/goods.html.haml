@@ -1,0 +1,13 @@
+%h1 Seller`s goods
+%em Name:
+%strong=@seller.name
+= render 'form_goods', seller: @seller
+%br
+= @main_link #unless @main_link.nil?
+%br
+= @main_page #unless @main_link.nil?
+%br
+%div
+  = link_to 'Show this seller', @seller
+  |
+  =link_to 'Back to sellers', sellers_path

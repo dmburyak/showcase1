@@ -1,0 +1,7 @@
+= form_with(url: seller_goods_path) do |form|
+
+  %div
+    = form.label :main_link, style: 'display: block'
+    = form.text_field :main_link
+  %div
+    = form.submit 'GO'

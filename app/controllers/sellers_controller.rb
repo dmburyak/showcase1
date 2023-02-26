@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SellersController < ApplicationController
+  include SellersHelper
+
   before_action :set_seller, only: %i[show edit update destroy]
   before_action :authenticate_admin!
 
@@ -46,6 +48,18 @@ class SellersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to sellers_url, notice: 'Seller was successfully destroyed.' }
     end
+  end
+
+  def goods
+    @seller = Seller.find(params[:seller_id])
+    # @main_link = params[:main_link]
+    # @main_link = 'https://www.att.com/buy/phones/browse/samsung'
+    @main_link = 'https://www.att.com/buy/phones/samsung-galaxy-s23-ultra.html'
+
+    return if @main_link.nil?
+
+    get_goods(@main_link) unless @main_link.empty?
+    render 'goods', status: :accepted
   end
 
   private

@@ -17,6 +17,7 @@ gem 'turbo-rails'
 gem 'devise'
 gem 'friendly_id', '~> 5.4.0'
 gem 'haml'
+gem 'nokogiri', '~> 1.14', '>= 1.14.2'
 gem 'ransack', '3.2.1'
 gem "factory_girl"
 gem "faker"

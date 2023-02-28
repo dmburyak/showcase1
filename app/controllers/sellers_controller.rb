@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SellersController < ApplicationController
-  include SellersHelper
+  include GoodsHelper
 
   before_action :set_seller, only: %i[show edit update destroy]
   before_action :authenticate_admin!

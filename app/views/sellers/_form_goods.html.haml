@@ -2,6 +2,6 @@
 
   %div
     = form.label :main_link, style: 'display: block'
-    = form.text_field :main_link
+    = form.text_field :main_link, size: 80
   %div
-    = form.submit 'GO'
+    = form.submit 'GO', class: %w[btn btn-primary]

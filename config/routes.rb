@@ -18,9 +18,8 @@ Rails.application.routes.draw do
   resources :property_values
 
   resources :sellers do
-    match 'goods', to: 'sellers#goods', via: [:get, :post]
+    match 'goods', to: 'sellers#goods', via: [:get]
+    match 'goods', to: 'models#get_models', via: [:post]
   end
-
-
 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_19_091650) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_28_173856) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -30,6 +30,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_19_091650) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["phone_id"], name: "index_images_on_item_id"
+  end
+
+  create_table "models", force: :cascade do |t|
+    t.string "name"
+    t.integer "seller_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["seller_id"], name: "index_models_on_seller_id"
   end
 
   create_table "phones", force: :cascade do |t|
@@ -88,4 +96,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_19_091650) do
   end
 
   add_foreign_key "images", "phones", primary_key: "id"
+  add_foreign_key "models", "sellers"
 end

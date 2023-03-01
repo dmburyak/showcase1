@@ -1,6 +1,10 @@
+https://www.att.com/buy/phones/browse/samsung
+
 = form_with(url: seller_goods_path) do |form|
 
   %div
+    = form.hidden_field :seller_id, value: @seller.id
+
     = form.label :main_link, style: 'display: block'
     = form.text_field :main_link, size: 80
   %div

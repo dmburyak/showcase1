@@ -1,7 +1,8 @@
 %h1 Seller`s goods
 %em Name:
 %strong=@seller.name
-= render 'form_goods', seller: @seller
+
+= render 'sellers/form_goods'
 %br
 = @main_link #unless @main_link.nil?
 %br

@@ -1,5 +1,6 @@
 class Seller < ApplicationRecord
   has_many :phones
+  has_many :models
 
   validates :name, presence: true
 

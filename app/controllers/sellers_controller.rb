@@ -54,12 +54,12 @@ class SellersController < ApplicationController
     @seller = Seller.find(params[:seller_id])
     # @main_link = params[:main_link]
     # @main_link = 'https://www.att.com/buy/phones/browse/samsung'
-    @main_link = 'https://www.att.com/buy/phones/samsung-galaxy-s23-ultra.html'
+    # @main_link = 'https://www.att.com/buy/phones/samsung-galaxy-s23-ultra.html'
 
-    return if @main_link.nil?
+    # return if @main_link.nil?
 
-    get_goods(@main_link) unless @main_link.empty?
-    render 'goods', status: :accepted
+    # get_goods(@main_link) unless @main_link.empty?
+    # render 'goods', status: :accepted
   end
 
   private

@@ -34,6 +34,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_173856) do
 
   create_table "models", force: :cascade do |t|
     t.string "name"
+    t.string "brand"
+    t.string "base_url"
+    t.text "model_url"
     t.integer "seller_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

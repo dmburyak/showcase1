@@ -1,0 +1,13 @@
+%table.table.table-primary
+  %thead
+    %tr
+      %th{scope: 'col'} #
+      %th{scope: 'col'} Name
+      %th{scope: 'col'} Update
+
+  %tbody
+    - @seller.models.each_with_index do |model, index|
+      %tr
+        %td=index + 1
+        %td=model.name
+        %td update

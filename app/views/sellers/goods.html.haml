@@ -4,9 +4,10 @@
 
 = render 'sellers/form_goods'
 %br
-= @main_link #unless @main_link.nil?
+
+= render 'sellers/seller_goods'
+
 %br
-= @main_page #unless @main_link.nil?
 %br
 %div
   = link_to 'Show this seller', @seller

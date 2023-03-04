@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   resources :property_values
 
   resources :sellers do
-    get 'goods', to: 'sellers#goods'
-    post 'goods', to: 'models#get_models'
+    get 'models', to: 'sellers#models'
+    post 'models', to: 'models#get_models'
   end
 
 end

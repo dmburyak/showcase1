@@ -1,11 +1,7 @@
-https://www.att.com/buy/phones/browse/samsung
-
-= form_with(url: seller_goods_path) do |form|
+= form_with(url: seller_models_path) do |form|
 
   %div
     = form.hidden_field :seller_id, value: @seller.id
-
-    = form.label :main_link, style: 'display: block'
-    = form.text_field :main_link, size: 80
+    = form.hidden_field :main_link, value: true
   %div
-    = form.submit 'GO', class: %w[btn btn-primary]
+    = form.submit 'Get/update models', class: %w[btn btn-primary]

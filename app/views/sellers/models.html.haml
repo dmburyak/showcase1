@@ -1,13 +1,11 @@
-%h1 Seller`s goods
+%h1 Seller`s models
 %em Name:
 %strong=@seller.name
 
 = render 'sellers/form_models'
 %br
-  = @seller.models.find(546).variants.first.color
-%br
 
-= render 'sellers/seller_goods'
+= render 'sellers/seller_models'
 
 %br
 %br

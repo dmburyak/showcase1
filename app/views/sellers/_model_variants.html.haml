@@ -1,12 +1,16 @@
-%tr
-  %th #
-  %th Name
-  %th Updated
-  %th Update
-- model.variants.each_with_index do |variant, index|
-  %tr
-    %td=index + 1
-    %td=variant.name
-    %td=variant.updated_at
-    %td
-      =render 'form_item', variant_id: variant.id
+%table.table
+  %thead
+    %tr
+      %th{scope: 'col'} #
+      %th.col-6{scope: 'col'} Name
+      %th{scope: 'col'} Updated
+      %th{scope: 'col'} Update
+
+    %tbody
+      - model.variants.order(:storage).each_with_index do |variant, index|
+        %tr
+          %td=index + 1
+          %td=variant.name
+          %td=variant.updated_at
+          %td
+            =render 'form_item', variant_id: variant.id

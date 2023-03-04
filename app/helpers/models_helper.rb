@@ -1,10 +1,11 @@
 module ModelsHelper
 
-  def model_parse(url)
-    uri = URI.parse(main_link.to_s)
+  def model_parse
+    url = 'https://www.att.com/buy/phones/browse/samsung'
+    uri = URI.parse(url.to_s)
     base_url = "#{uri.scheme}://#{uri.host}"
 
-    doc = Nokogiri::HTML(URI.open(main_link))
+    doc = Nokogiri::HTML(URI.open(url))
             .xpath("//script[@id='__NEXT_DATA__']").to_s
             .sub('<script id="__NEXT_DATA__" type="application/json">', '')
             .sub('</script>', '')
@@ -31,7 +32,10 @@ module ModelsHelper
     end
   end
 
-  def variants_parse(url)
+  def variants_parse(model_id)
+
+    @model = Model.find(model_id)
+    url = @model.base_url + @model.model_url
 
     doc = Nokogiri::HTML(URI.open(url))
     xpath = "//script[@id='__NEXT_DATA__']"
@@ -54,9 +58,7 @@ module ModelsHelper
       else
         @model.variants.create(variant)
       end
-
     end
-
   end
 
 end

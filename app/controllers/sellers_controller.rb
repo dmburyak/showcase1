@@ -50,7 +50,7 @@ class SellersController < ApplicationController
     end
   end
 
-  def goods
+  def models
     @seller = Seller.find(params[:seller_id])
   end
 

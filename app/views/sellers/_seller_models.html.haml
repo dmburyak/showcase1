@@ -1,0 +1,22 @@
+- @seller.models.each_with_index do |model, index|
+  %table.table
+    %thead
+      %tr
+        %th{scope: 'col'} #
+        %th.col-6{scope: 'col'} Name
+        %th{scope: 'col'} Updated
+        %th{scope: 'col'} Update
+
+    %tbody
+      %tr.table-primary
+        %td=index + 1
+        %td
+          %a{'data-bs-toggle': "collapse", 'href': "#collapse-#{model.id}", 'role': "button", 'aria-expanded': "false", 'aria-controls': "collapse-#{model.id}"}
+            =model.name
+            (#{model.variants.count})
+        %td=model.updated_at
+        %td
+          =render 'form_variants', model_id: model.id
+
+  .collapse{id: "collapse-#{model.id}"}
+    =render 'model_variants', model: model

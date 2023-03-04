@@ -1,13 +1,18 @@
-%table.table.table-primary
+%table.table
   %thead
     %tr
       %th{scope: 'col'} #
       %th{scope: 'col'} Name
+      %th{scope: 'col'} Updated
       %th{scope: 'col'} Update
 
   %tbody
     - @seller.models.each_with_index do |model, index|
-      %tr
+      %tr.table-primary
         %td=index + 1
         %td=model.name
-        %td update
+        %td=model.updated_at
+        %td
+          =render 'form_variants', model_id: model.id
+      %tr
+        =render 'model_variants', model: model

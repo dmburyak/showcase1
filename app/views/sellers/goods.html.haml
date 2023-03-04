@@ -2,7 +2,9 @@
 %em Name:
 %strong=@seller.name
 
-= render 'sellers/form_goods'
+= render 'sellers/form_models'
+%br
+  = @seller.models.find(546).variants.first.color
 %br
 
 = render 'sellers/seller_goods'

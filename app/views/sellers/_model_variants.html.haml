@@ -1,0 +1,12 @@
+%tr
+  %th #
+  %th Name
+  %th Updated
+  %th Update
+- model.variants.each_with_index do |variant, index|
+  %tr
+    %td=index + 1
+    %td=variant.name
+    %td=variant.updated_at
+    %td
+      =render 'form_item', variant_id: variant.id

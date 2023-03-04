@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_28_173856) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_04_092220) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -98,6 +98,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_173856) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "variants", force: :cascade do |t|
+    t.string "name"
+    t.string "color"
+    t.string "storage"
+    t.integer "model_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["model_id"], name: "index_variants_on_model_id"
+  end
+
   add_foreign_key "images", "phones", primary_key: "id"
   add_foreign_key "models", "sellers"
+  add_foreign_key "variants", "models"
 end

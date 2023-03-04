@@ -1,0 +1,6 @@
+= form_with(url: seller_goods_path) do |form|
+
+  %div
+    = form.hidden_field :model_id, value: model_id
+  %div
+    = form.submit 'Update', class: %w[btn btn-primary]

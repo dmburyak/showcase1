@@ -71,9 +71,6 @@ module PhonesHelper
     options.each_index do |i|
       value_ids = options[i].values.flatten
 
-      # value_ids.delete('')
-      # next if value_ids.empty?
-
       @phones = if @phones.nil?
                   Phone.joins(:phones_property_values).where('phones_property_values.property_value_id': value_ids)
                 else

@@ -12,6 +12,8 @@ class ModelsController < ApplicationController
 
     variants_parse(params[:model_id]) unless params[:model_id].nil? || params[:model_id].empty?
 
+    item_parse(params[:item_id]) unless params[:item_id].nil? || params[:item_id].empty?
+
     redirect_to seller_models_path @seller
   end
 

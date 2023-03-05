@@ -1,14 +1,11 @@
 %h5.text-primary.mb-3= phone.name
 
 %p
-  %strong Price: #{number_to_currency(phone.price)}
 
 - key_features_values(phone).each do | p_value |
   %p
     %strong #{p_value.property.name}:
     = p_value.property_data
-
-%p= phone.description
 
 %p
   %strong Seller:

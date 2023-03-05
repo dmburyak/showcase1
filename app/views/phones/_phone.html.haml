@@ -5,9 +5,9 @@
   = image_tag first_phone.url, height: 300 if first_phone
 
 %p
-  %strong Price: #{number_to_currency(phone.price)}
 
 - key_features_values(phone).each do | p_value |
+  - next if p_value.property.name == 'Description'
   %p
     %strong #{p_value.property.name}:
     = p_value.property_data

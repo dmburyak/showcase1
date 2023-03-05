@@ -37,7 +37,7 @@ class PhonesController < ApplicationController
     render :index, status: :accepted
   end
 
-  def show; end
+  def show;end
 
   def new
     @phone = Phone.new
@@ -60,6 +60,7 @@ class PhonesController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+
   end
 
   def destroy

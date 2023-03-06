@@ -7,9 +7,9 @@ module ModelsHelper
     base_url = "#{uri.scheme}://#{uri.host}"
 
     doc = Nokogiri::HTML(URI.open(url))
-            .xpath("//script[@id='__NEXT_DATA__']").to_s
-            .sub('<script id="__NEXT_DATA__" type="application/json">', '')
-            .sub('</script>', '')
+                  .xpath("//script[@id='__NEXT_DATA__']").to_s
+                  .sub('<script id="__NEXT_DATA__" type="application/json">', '')
+                  .sub('</script>', '')
 
     doc = JSON.parse(doc)
     doc = doc['props']['pageProps']['initialDeviceList']
@@ -38,24 +38,26 @@ module ModelsHelper
     @model = Model.find(model_id)
     url = @model.base_url + @model.model_url
 
-    doc = Nokogiri::HTML(URI.open(url))
     xpath = "//script[@id='__NEXT_DATA__']"
-    doc2 = doc.xpath(xpath).to_s
-    doc3 = doc2.sub('<script id="__NEXT_DATA__" type="application/json">', "")
-    doc4 = doc3.sub('</script>', "")
-    doc5 = JSON.parse(doc4)
-    doc6 = doc5['props']['pageProps']['productField']['details']['skuItems']
+    doc = Nokogiri::HTML(URI.open(url))
+                  .xpath(xpath)
+                  .to_s
+                  .sub('<script id="__NEXT_DATA__" type="application/json">', '')
+                  .sub('</script>', '')
 
-    doc6.each do |item|
+    doc = JSON.parse(doc)
+    sku_items = doc['props']['pageProps']['productField']['details']['skuItems']
+
+    sku_items.each do |item|
       variant = {
         name: item[1]['displayName'],
         color: item[1]['color'],
         storage: item[1]['capacity']
       }
 
-      var = @model.variants.find_by(name: variant[:name])
-      if var
-        var.update(variant)
+      phone_variant = @model.variants.find_by(name: variant[:name])
+      if phone_variant
+        phone_variant.update(variant)
       else
         @model.variants.create(variant)
       end

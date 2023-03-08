@@ -75,24 +75,20 @@ module ModelsHelper
     xpath = "//script[@id='__NEXT_DATA__']"
 
     doc = Nokogiri::HTML(URI.open(url))
+                  .xpath(xpath).to_s
+                  .sub('<script id="__NEXT_DATA__" type="application/json">', '')
+                  .sub('</script>', '')
 
-    xpath_description = "//div[@id='accordion-content-overview']//p"
+    doc = JSON.parse(doc)
 
-    doc2 = doc.xpath(xpath).to_s
-    doc3 = doc2.sub('<script id="__NEXT_DATA__" type="application/json">', "")
-    doc4 = doc3.sub('</script>', "")
-    doc5 = JSON.parse(doc4)
-    doc6 = doc5['props']['pageProps']['productField']['details']['skuItems']
+    items_data = doc['props']['pageProps']['productField']['details']['skuItems']
 
-    doc6.each do |item|
+    items_data.each do |item|
 
       next if item[1]['displayName'] != Variant.find(item_id).name
 
       phone = {
         name: "#{item[1]['shortDisplayName']}, #{item[1]['capacity']}, #{item[1]['color']}",
-        # description: doc.xpath(xpath_description).text().sub('battery1', 'battery'),
-        # description: doc5['props']['pageProps']['idpcmsContent']['idp-cms-feed'],
-        # price: item[1]['priceList'][0]['msrp'],
         url: "#{@model.base_url}/buy/phones/#{item[1]['uniqueURLName']}.html"
       }
 
@@ -105,9 +101,9 @@ module ModelsHelper
                  @seller.phones.create(phone)
                end
 
-      item_images_parse(doc5, item[0])
+      item_images_parse(doc, item[0])
 
-      item_properties_parse(doc5, item[1])
+      item_properties_parse(doc, item[1])
 
     end
 
@@ -134,39 +130,42 @@ module ModelsHelper
         else
           @phone.images.create(image)
         end
-        #
-        # val = {
-        #   text: image[:url]
-        # }
-        # Temp.first.update(val)
 
       end
-
     end
   end
 
   def item_properties_parse(doc, phone_data)
 
-    doc2 = doc['props']['pageProps']['idpcmsContent']['idp-cms-feed']
-    # doc3 = doc2.to_json
-    # pdp => {"skus"=>"sku2820220,sku2820221,sku2820222,sku2820223,sku2820224,sku2820226,sku2820228,sku2820232"}
-    doc3 = search_value(doc2, 'deviceSpecification')
+    doc = doc['props']['pageProps']['idpcmsContent']['idp-cms-feed']
+
+    specifications = search_value(doc, 'deviceSpecification')
 
     # get all model properties from site
     props = Hash.new
 
-    doc3.each do |arr1|
+    specifications.each do |arr1|
       arr1['master']['accordionData']&.each do |arr2|
+
         property_key = Property.find_by(name: arr2['master']['key'])
+
         next if property_key.nil?
+
         property_value = arr2['master']['value']
-        property_value = property_value.gsub('<br>', ' ').gsub('<br/>', ' ').gsub('<i>', '').sub('checkbox', 'yes')
+                         .gsub('<br>', ' ')
+                         .gsub('<br/>', ' ')
+                         .gsub('<i>', '')
+                         .sub('checkbox', 'yes')
+
         props[property_key.id] = property_value
       end
     end
 
-    description = search_value(doc2, 'contentFragments')['overview'][0]['master']['overviewDescription']
-    description.sub!('<p>', '').sub!('</p>', '').sub!('<sup>1</sup>', '')
+    description = search_value(doc, 'contentFragments')['overview'][0]['master']['overviewDescription']
+                  .sub('<p>', '')
+                  .sub('</p>', '')
+                  .sub('<sup>1</sup>', '')
+
     props[44] = description
 
     price = phone_data['priceList'][0]['msrp']
@@ -182,7 +181,9 @@ module ModelsHelper
     phone_property_values = []
 
     props.each do |key, val|
+
       get_values = PropertyValue.where(property_id: key)
+
       if get_values.empty?
         new_value = PropertyValue.create({ property_id: key, property_data: val })
         phone_property_values << new_value.id
@@ -203,15 +204,10 @@ module ModelsHelper
 
     @phone.update({ "property_value_ids": phone_property_values })
 
-    val = {
-      text: props
-    }
-    Temp.first.update(val)
   end
 
-  # doc4 = doc3.to_json
-
   def search_value(hash, target_key)
+
     hash.each do |key, value|
       if key == target_key
         return value
@@ -221,6 +217,7 @@ module ModelsHelper
       end
     end
     nil
+
   end
 
 end

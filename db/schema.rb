@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_05_083645) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_19_133050) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -68,7 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_05_083645) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "order"
+    t.integer "priority"
     t.integer "property_group_id"
     t.boolean "key_feature"
     t.integer "filter", default: 0

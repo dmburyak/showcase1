@@ -88,7 +88,7 @@ module ModelsHelper
       next if item[1]['displayName'] != Variant.find(item_id).name
 
       phone = {
-        name: "#{item[1]['shortDisplayName']}, #{item[1]['capacity']}, #{item[1]['color']}",
+        name: "#{item[1]['shortDisplayName']}, #{item[1]['capacity'].sub(' ','')}, #{item[1]['color']}",
         url: "#{@model.base_url}/buy/phones/#{item[1]['uniqueURLName']}.html"
       }
 
@@ -174,7 +174,7 @@ module ModelsHelper
     color = phone_data['color']
     props[41] = color
 
-    capacity = phone_data['capacity']
+    capacity = phone_data['capacity'].sub(' ', '')
     props[26] = capacity
 
     # insert new model properties into base and set property_values to phone

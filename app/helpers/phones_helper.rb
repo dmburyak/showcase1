@@ -8,10 +8,12 @@ module PhonesHelper
   end
 
   def key_features_values(phone)
-    phone.property_values.where(property_id: Property.key_features.ids)
+    phone.property_values.joins(:property)
+         .where(property_id: Property.key_features.ids).order('properties.priority desc')
   end
 
   def non_key_features_values(phone)
+    # phone.property_values.where(property_id: Property.non_key_features.ids)
     phone.property_values.where(property_id: Property.non_key_features.ids)
   end
 
